@@ -1,15 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vehicle index{% endblock %}
+{% block title %}Admin panel{% endblock %}
 
 {% block body %}
 
-    {% if not app.user %}
-        <a href="{{ path('app_login') }}">Login</a>
-    {% else %}
-        <a href="{{ path('app_logout') }}">Logout</a>
-    {% endif %}
-    <h1>Vehicle index</h1>
+    <h1 class="text-center">Admin panel</h1>
 
     <table class="table">
         <thead>
