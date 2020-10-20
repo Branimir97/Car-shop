@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/vehicle")
- * @IsGranted("ROLE_ADMIN")
  */
 class VehicleController extends AbstractController
 {
@@ -25,10 +23,13 @@ class VehicleController extends AbstractController
      */
     public function index(VehicleRepository $vehicleRepository): Response
     {
-
-        return $this->render('vehicle/index.html.twig', [
-            'vehicles' => $vehicleRepository->findAll(),
-        ]);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('vehicle/index.html.twig', [
+                'vehicles' => $vehicleRepository->findAll(),
+            ]);
+        }
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -38,25 +39,30 @@ class VehicleController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $vehicle = new Vehicle();
-        $form = $this->createForm(VehicleType::class, $vehicle);
-        $form->handleRequest($request);
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            $vehicle = new Vehicle();
+            $form = $this->createForm(VehicleType::class, $vehicle);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $vehicle->setUser($this->getUser());
-            $vehicle->setVisibility(1);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $vehicle->setUser($this->getUser());
+                $vehicle->setVisibility(1);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($vehicle);
-            $entityManager->flush();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($vehicle);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('vehicle_index');
+                return $this->redirectToRoute('vehicle_index');
+            }
+
+            return $this->render('vehicle/new.html.twig', [
+                'vehicle' => $vehicle,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('vehicle/new.html.twig', [
-            'vehicle' => $vehicle,
-            'form' => $form->createView(),
-        ]);
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -66,9 +72,15 @@ class VehicleController extends AbstractController
      */
     public function show(Vehicle $vehicle): Response
     {
-        return $this->render('vehicle/show.html.twig', [
-            'vehicle' => $vehicle,
-        ]);
+
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            return $this->render('vehicle/show.html.twig', [
+                'vehicle' => $vehicle,
+            ]);
+        }
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -79,19 +91,25 @@ class VehicleController extends AbstractController
      */
     public function edit(Request $request, Vehicle $vehicle): Response
     {
-        $form = $this->createForm(VehicleType::class, $vehicle);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            $form = $this->createForm(VehicleType::class, $vehicle);
+            $form->handleRequest($request);
 
-            return $this->redirectToRoute('vehicle_index');
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('vehicle_index');
+            }
+
+            return $this->render('vehicle/edit.html.twig', [
+                'vehicle' => $vehicle,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('vehicle/edit.html.twig', [
-            'vehicle' => $vehicle,
-            'form' => $form->createView(),
-        ]);
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -102,13 +120,17 @@ class VehicleController extends AbstractController
      */
     public function delete(Request $request, Vehicle $vehicle): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$vehicle->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($vehicle);
-            $entityManager->flush();
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            if ($this->isCsrfTokenValid('delete'.$vehicle->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($vehicle);
+                $entityManager->flush();
+            }
+            return $this->redirectToRoute('vehicle_index');
         }
-
-        return $this->redirectToRoute('vehicle_index');
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -118,17 +140,23 @@ class VehicleController extends AbstractController
      */
     public function changeVisibility(Vehicle $vehicle)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        if($vehicle->getVisibility())
-        {
-            $vehicle->setVisibility(0);
-        } else
-        {
-            $vehicle->setVisibility(1);
-        }
-        $entityManager->persist($vehicle);
-        $entityManager->flush();
 
-        return $this->redirectToRoute('vehicle_index');
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            $entityManager = $this->getDoctrine()->getManager();
+            if($vehicle->getVisibility())
+            {
+                $vehicle->setVisibility(0);
+            } else
+            {
+                $vehicle->setVisibility(1);
+            }
+            $entityManager->persist($vehicle);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('vehicle_index');
+        }
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 }

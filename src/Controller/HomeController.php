@@ -18,7 +18,7 @@ class HomeController extends AbstractController
      */
     public function index(VehicleRepository $vehicleRepository)
     {
-        $vehicles = $vehicleRepository->findAll();
+        $vehicles = $vehicleRepository->findAllAvailableAndVisible();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
@@ -27,7 +27,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("vehicle/{id}", name="vehicle_details")
+     * @Route("vehicle/{id}/details", name="vehicle_details")
      * @param Request $request
      * @param VehicleRepository $vehicleRepository
      * @return Response

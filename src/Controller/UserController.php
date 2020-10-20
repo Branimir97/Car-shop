@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/user")
- * @IsGranted("ROLE_ADMIN")
  */
 class UserController extends AbstractController
 {
@@ -24,32 +23,49 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
+
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            return $this->render('user/index.html.twig', [
+                'users' => $userRepository->findAll(),
+            ]);
+        }
+
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            $user = new User();
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
 
-            return $this->redirectToRoute('user_index');
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('user_index');
+            }
+
+            return $this->render('user/new.html.twig', [
+                'user' => $user,
+                'form' => $form->createView(),
+            ]);
         }
 
-        return $this->render('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
+
     }
 
     /**
@@ -57,9 +73,16 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-        ]);
+
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            return $this->render('user/show.html.twig', [
+                'user' => $user,
+            ]);
+        }
+
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -67,19 +90,27 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user): Response
     {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
 
-            return $this->redirectToRoute('user_index');
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('user_index');
+            }
+
+            return $this->render('user/edit.html.twig', [
+                'user' => $user,
+                'form' => $form->createView(),
+            ]);
         }
 
-        return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
+
     }
 
     /**
@@ -87,12 +118,18 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($user);
-            $entityManager->flush();
+        if($this->isGranted('ROLE_ADMIN'))
+        {
+            if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($user);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('home');
         }
 
-        return $this->redirectToRoute('user_index');
+        $this->addFlash('warning', "Permission denied.");
+        return $this->redirectToRoute('home');
     }
 }

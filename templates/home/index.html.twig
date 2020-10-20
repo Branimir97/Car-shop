@@ -26,27 +26,25 @@
 
     <div class="row">
     {% for vehicle in vehicles %}
-        {% if vehicle.visibility %}
-            <div class="col-4 one_vehicle m-2">
-                <img src="https://fakeimg.pl/300x200/">
-                <div class="vehicle_details text-center">
-                    <p class="p-2 bg-danger text-white">
-                        <span>{{ vehicle.mark }}</span>
-                        <span>{{ vehicle.model }}</span>
-                    </p>
-                    <div class="row">
-                        <div class="col-6">
-                            <p class="bg-info">{{ vehicle.manufactureYear }}</p>
-                        </div>
-                        <div class="col-6">
-                            <p class="bg-info m-0">{{ vehicle.kilometers }} km</p>
-                        </div>
+        <div class="col-4 one_vehicle m-2">
+            <img src="https://fakeimg.pl/300x200/">
+            <div class="vehicle_details text-center">
+                <p class="p-2 bg-danger text-white">
+                    <span>{{ vehicle.mark }}</span>
+                    <span>{{ vehicle.model }}</span>
+                </p>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="bg-info">{{ vehicle.manufactureYear }}</p>
                     </div>
-                    <p class="bg-warning">{{ vehicle.price }} EUR</p>
-                    <a href="{{ path('vehicle_details', {id : vehicle.id }) }}" title="Show details">Details</a>
+                    <div class="col-6">
+                        <p class="bg-info m-0">{{ vehicle.kilometers }} km</p>
+                    </div>
                 </div>
+                <p class="bg-warning">{{ vehicle.price }} EUR</p>
+                <a href="{{ path('vehicle_details', {id : vehicle.id }) }}" title="Show details">Details</a>
             </div>
-        {% endif %}
+        </div>
     {% endfor %}
     </div>
 {% endblock %}

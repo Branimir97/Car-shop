@@ -19,4 +19,16 @@ class VehicleRepository extends ServiceEntityRepository
         parent::__construct($registry, Vehicle::class);
     }
 
+    public function findAllAvailableAndVisible()
+    {
+        $query = $this->createQueryBuilder('v')
+            ->where('v.visibility = :visibility')
+            ->andWhere('v.status = :status')
+            ->setParameter('visibility', 1)
+            ->setParameter('status', "Na lageru");
+
+
+        return $query->getQuery()->execute();
+    }
+
 }
