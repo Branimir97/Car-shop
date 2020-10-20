@@ -82,6 +82,11 @@ class Vehicle
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $visibility;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -239,6 +244,18 @@ class Vehicle
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getVisibility(): ?bool
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(bool $visibility): self
+    {
+        $this->visibility = $visibility;
 
         return $this;
     }

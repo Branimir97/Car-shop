@@ -5,7 +5,8 @@
 {% block body %}
     <h1>Create new Vehicle</h1>
 
+    <a class="p-3" href="{{ path('vehicle_index') }}"><i class="fas fa-arrow-circle-left"></i> Back to list</a>
+
     {{ include('vehicle/_form.html.twig') }}
 
-    <a href="{{ path('vehicle_index') }}">back to list</a>
 {% endblock %}

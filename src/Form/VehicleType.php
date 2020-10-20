@@ -3,26 +3,63 @@
 namespace App\Form;
 
 use App\Entity\Vehicle;
+use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Webmozart\Assert\Assert;
 
 class VehicleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('status')
-            ->add('type')
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    'Na lageru' => 'Na lageru',
+                    'U dolasku' => 'U dolasku',
+                    'Rezervirano' => 'Rezervirano'
+                ]
+            ])
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'Osobno vozilo' => 'Osobno vozilo',
+                    'Gospodarsko vozilo' => 'Gospodarsko vozilo'
+                ]
+            ])
             ->add('mark')
             ->add('model')
-            ->add('manufactureYear')
-            ->add('modelYear')
-            ->add('kilometers')
-            ->add('power')
-            ->add('gearbox')
-            ->add('gears')
+            ->add('manufactureYear', IntegerType::class, [
+                'attr' => [
+                    'min'=> 1950,
+                    'max' => 2021
+                ]
+            ])
+            ->add('modelYear', IntegerType::class, [
+                'attr' => [
+                    'min' => 1950,
+                    'max' => 2021
+                ]
+            ])
+            ->add('kilometers', IntegerType::class)
+            ->add('power', IntegerType::class)
+            ->add('gearbox', ChoiceType::class, [
+                'choices' => [
+                    'Ručni' => 'Ručni',
+                    'Poluautomatski' => 'Poluautomatski',
+                    'Automatski' => 'Automatski'
+                ]
+            ])
+            ->add('gears', IntegerType::class, [
+                'attr' => [
+                    'min' => 4,
+                    'max' => 9
+                ]
+            ])
             ->add('consumption')
             ->add('price')
         ;

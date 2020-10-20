@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Vehicle;
 use App\Repository\VehicleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,11 +20,29 @@ class HomeController extends AbstractController
     {
         $vehicles = $vehicleRepository->findAll();
 
-
-
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'vehicles' => $vehicles
+            'vehicles' => $vehicles,
+        ]);
+    }
+
+    /**
+     * @Route("vehicle/{id}", name="vehicle_details")
+     * @param Request $request
+     * @param VehicleRepository $vehicleRepository
+     * @return Response
+     */
+    public function details(Request $request, VehicleRepository $vehicleRepository)
+    {
+
+        $vehicle_id  = $request->get('id');
+
+        $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
+
+        return $this->render('home/details.html.twig', [
+            'controller_name' => 'HomeController',
+            'vehicle' => $vehicle,
+
         ]);
     }
 }

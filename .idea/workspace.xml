@@ -11,18 +11,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VehicleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Vehicle.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Vehicle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/AppAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/AppAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/VehicleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VehicleType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/vehicle/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +157,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/home" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -165,6 +169,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/home" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -179,7 +184,7 @@
       <workItem from="1603089666483" duration="1336000" />
       <workItem from="1603092890623" duration="6113000" />
       <workItem from="1603108310467" duration="7293000" />
-      <workItem from="1603174226931" duration="5652000" />
+      <workItem from="1603174226931" duration="15232000" />
     </task>
     <servers />
   </component>
@@ -211,5 +216,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="768" y="456" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603111988869" />
+    <state x="623" y="238" width="672" height="678" key="search.everywhere.popup" timestamp="1603188871889">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="238" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603188871889" />
   </component>
 </project>
