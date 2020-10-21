@@ -3,10 +3,11 @@
 {% block title %}New Vehicle{% endblock %}
 
 {% block body %}
-    <h1>Create new Vehicle</h1>
+    <h1 class="text-center p-3">Create new Vehicle</h1>
 
     <a class="p-3" href="{{ path('vehicle_index') }}"><i class="fas fa-arrow-circle-left"></i> Back to list</a>
 
-    {{ include('vehicle/_form.html.twig') }}
-
+    <div class="mt-3 mb-3">
+        {{ include('vehicle/_form.html.twig') }}
+    </div>
 {% endblock %}

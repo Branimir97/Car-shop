@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/user")
@@ -38,9 +39,10 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
 
         if($this->isGranted('ROLE_ADMIN'))
@@ -50,6 +52,13 @@ class UserController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
@@ -87,8 +96,12 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param User $user
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return Response
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
     {
 
         if($this->isGranted('ROLE_ADMIN'))
@@ -97,6 +110,13 @@ class UserController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('plainPassword')->getData())
+                );
+
                 $this->getDoctrine()->getManager()->flush();
 
                 return $this->redirectToRoute('user_index');
@@ -115,6 +135,9 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param User $user
+     * @return Response
      */
     public function delete(Request $request, User $user): Response
     {
@@ -126,7 +149,7 @@ class UserController extends AbstractController
                 $entityManager->flush();
             }
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('user_index');
         }
 
         $this->addFlash('warning', "Permission denied.");

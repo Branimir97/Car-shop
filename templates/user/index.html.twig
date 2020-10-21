@@ -3,7 +3,7 @@
 {% block title %}User manager{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1 class="p-3 text-center">Welcome to user manager</h1>
 
     <table class="table">
         <thead>
@@ -13,7 +13,7 @@
                 <th>Roles</th>
                 <th>First_name</th>
                 <th>Last_name</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +25,12 @@
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a class="btn btn-success" href="{{ path('user_show', {'id': user.id}) }}">
+                        <i class="fas fa-info-circle"></i></a>
+                    </a>
+                    <a class="btn btn-warning" href="{{ path('user_edit', {'id': user.id}) }}">
+                        <i class="far fa-edit"></i></a>
+                    </a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+    <a class="btn btn-outline-success" href="{{ path('user_new') }}">Create new</a>
 {% endblock %}

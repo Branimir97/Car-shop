@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Vehicle;
+use App\Repository\UserRepository;
 use App\Repository\VehicleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,14 +37,14 @@ class HomeController extends AbstractController
     public function details(Request $request, VehicleRepository $vehicleRepository)
     {
 
-        $vehicle_id  = $request->get('id');
+        $vehicle_id = $request->get('id');
 
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
 
         return $this->render('home/details.html.twig', [
             'controller_name' => 'HomeController',
             'vehicle' => $vehicle,
-
         ]);
     }
+
 }
