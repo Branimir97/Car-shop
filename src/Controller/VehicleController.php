@@ -6,6 +6,7 @@ use App\Entity\Vehicle;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -158,5 +159,22 @@ class VehicleController extends AbstractController
         }
         $this->addFlash('warning', "Permission denied.");
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/upload", name="upload_test")
+     */
+    public function temporaryUploadAction(Request $request)
+    {
+
+        /** @var UploadedFile $uploadedFile */
+        $uploadedFile = $request->files->get('image');
+
+        $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+
+        $originalFileName = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $newFileName = $originalFileName .'-'. uniqid() .'.'.$uploadedFile->guessExtension();
+
+        dd($uploadedFile->move($destination, $newFileName));
     }
 }

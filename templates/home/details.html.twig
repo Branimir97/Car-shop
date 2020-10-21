@@ -3,11 +3,11 @@
 {% block title %}Vehicle{% endblock %}
 
 {% block body %}
-    <h1>Vehicle <b><span style="color: #B0413E"> {{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
+    <h1 class="text-center p-3">Vehicle <b><span style="color: #B0413E"> {{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
 
     <a class="p-3" href="{{ path('home') }}"><i class="fas fa-arrow-circle-left"></i> Back to homepage</a>
 
-    <table class="table">
+    <table class="table mt-3">
         <tbody>
         <tr>
             <th>Id</th>
@@ -63,5 +63,7 @@
         </tr>
         </tbody>
     </table>
+
+    <p>You're interested for this vehicle? Send us contact <a href="">form</a>.</p>
 
 {% endblock %}
