@@ -28,8 +28,9 @@ class VehicleType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'Osobno vozilo' => 'Osobno vozilo',
-                    'Gospodarsko vozilo' => 'Gospodarsko vozilo'
+                    'Personal vehicle' => 'Personal vehicle',
+                    'Commercial vehicle' => 'Commercial vehicle',
+                    'Work machine' => 'Work machine'
                 ]
             ])
             ->add('mark')
@@ -50,9 +51,9 @@ class VehicleType extends AbstractType
             ->add('power', IntegerType::class)
             ->add('gearbox', ChoiceType::class, [
                 'choices' => [
-                    'Ručni' => 'Ručni',
-                    'Poluautomatski' => 'Poluautomatski',
-                    'Automatski' => 'Automatski'
+                    'Manual' => 'Manual',
+                    'Semi-automatic' => 'Semi-automatic',
+                    'Automatic' => 'Automatic'
                 ]
             ])
             ->add('gears', IntegerType::class, [

@@ -19,7 +19,23 @@ class UserType extends AbstractType
     {
 
         $builder
+            ->add('first_name')
+            ->add('last_name')
             ->add('email')
+            ->add('plainPassword', PasswordType::class, [
+                'label' => 'Password',
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password.'
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'max' => 4096
+                    ])
+                ]
+            ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'ROLE_ADMIN' => 'ROLE_ADMIN',
@@ -27,34 +43,6 @@ class UserType extends AbstractType
                 ],
                 'expanded' => true,
                 'multiple' => true,
-            ])
-            ->add('plainPassword', PasswordType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password.'
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        'max' => 4096
-                    ])
-                ]
-            ])
-            ->add('first_name')
-            ->add('last_name')
-            ->add('plainPassword', PasswordType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password.'
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        'max' => 4096
-                    ])
-                ]
             ]);
     }
 

@@ -41,11 +41,12 @@ class InquirieController extends AbstractController
                 $entityManager->persist($inquirie);
                 $entityManager->flush();
 
-                $vehicle->setStatus('Rezervirano');
+                $vehicle->setStatus('Reserved');
                 $entityManager->persist($vehicle);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('vehicle_index');
+                $this->addFlash('success', 'Thanks for sending us offer for this vehicle. Owner is gonna answer you soon!');
+                return $this->redirectToRoute('vehicle_details', ['id'=> $vehicle->getId()]);
             }
             return $this->render('inquirie/index.html.twig', [
                 'form' => $form->createView(),
@@ -156,7 +157,6 @@ class InquirieController extends AbstractController
      */
     public function declineOffer(Request $request)
     {
-
 
         if($this->isGranted('ROLE_ADMIN'))
         {

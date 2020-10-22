@@ -19,13 +19,4 @@ class ImageRepository extends ServiceEntityRepository
         parent::__construct($registry, Image::class);
     }
 
-    public function findByVehicle($vehicle)
-    {
-        $query = $this->createQueryBuilder("i")
-            ->where("i.vehicle = :vehicle")
-            ->setParameter("vehicle", $vehicle);
-
-        return $query->getQuery()->execute();
-    }
-
 }

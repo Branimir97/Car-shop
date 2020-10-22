@@ -13,13 +13,12 @@
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/InquirieController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Inquirie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Inquirie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/InquirieFormType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/InquirieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InquirieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/VehicleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VehicleType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inquirie/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ImageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ImageRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/details.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +179,7 @@
       <workItem from="1603174226931" duration="24513000" />
       <workItem from="1603201731555" duration="54000" />
       <workItem from="1603261841137" duration="21498000" />
-      <workItem from="1603346510530" duration="18530000" />
+      <workItem from="1603346510530" duration="23383000" />
     </task>
     <servers />
   </component>
@@ -220,9 +219,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="768" y="456" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603111988869" />
-    <state x="623" y="238" width="672" height="678" key="search.everywhere.popup" timestamp="1603188871889">
+    <state x="623" y="238" width="672" height="678" key="search.everywhere.popup" timestamp="1603372770718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="238" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603188871889" />
+    <state x="623" y="238" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603372770718" />
   </component>
 </project>
