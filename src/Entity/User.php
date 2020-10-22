@@ -53,9 +53,15 @@ class User implements UserInterface
      */
     private $vehicles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Inquirie::class, mappedBy="user")
+     */
+    private $inquiries;
+
     public function __construct()
     {
         $this->vehicles = new ArrayCollection();
+        $this->inquiries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +191,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($vehicle->getUser() === $this) {
                 $vehicle->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Inquirie[]
+     */
+    public function getInquiries(): Collection
+    {
+        return $this->inquiries;
+    }
+
+    public function addInquiry(Inquirie $inquiry): self
+    {
+        if (!$this->inquiries->contains($inquiry)) {
+            $this->inquiries[] = $inquiry;
+            $inquiry->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInquiry(Inquirie $inquiry): self
+    {
+        if ($this->inquiries->contains($inquiry)) {
+            $this->inquiries->removeElement($inquiry);
+            // set the owning side to null (unless already changed)
+            if ($inquiry->getUser() === $this) {
+                $inquiry->setUser(null);
             }
         }
 

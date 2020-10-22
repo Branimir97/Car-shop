@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create inquirie{% endblock %}
+{% block title %}Inquirie index{% endblock %}
 
 {% block body %}
 
+    <h1 class="text-center p-3">Create inquirie for vehicle {{ vehicle_title }}</h1>
+
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.vehicle, {'value':vehicle_title}) }}
+    {{ form_row(form.content) }}
     {{ form_end(form) }}
 
 {% endblock %}

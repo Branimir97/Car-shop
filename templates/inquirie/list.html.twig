@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inquirie list{% endblock %}
+
+{% block body %}
+    <h1 class="text-center p-3">Active inquiries</h1>
+
+    {% if not inquiries %}
+    <p>No inquiries.</p>
+    {% endif %}
+    {% for inquirie in inquiries %}
+        <div class="one_inquirie" style="background-color: #5eb5e0">
+            <p>Vehicle:<br><b>{{ inquirie.vehicle.mark }} {{ inquirie.vehicle.model }}</b></p>
+            <p>Content:<br><b>{{ inquirie.content }}</b></p>
+            <p>Form sent by:<br><b>{{ inquirie.user.firstName }} {{ inquirie.user.lastName }}</b></p>
+
+            <div class="text-center">
+                <a class="btn btn-success" href="{{ path('accept_offer', {id:inquirie.id})}}">Accept offer</a>
+                <a class="btn btn-danger" href="{{ path('decline_offer', {id:inquirie.id}) }}">Decline offer</a>
+            </div>
+        <hr>
+        </div>
+    {% endfor %}
+
+{% endblock %}

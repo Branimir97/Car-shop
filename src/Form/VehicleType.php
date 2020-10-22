@@ -21,9 +21,9 @@ class VehicleType extends AbstractType
         $builder
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'Na lageru' => 'Na lageru',
-                    'U dolasku' => 'U dolasku',
-                    'Rezervirano' => 'Rezervirano'
+                    'In stock' => 'In stock',
+                    'In arrival' => 'In arrival',
+                    'Reserved' => 'Reserved'
                 ]
             ])
             ->add('type', ChoiceType::class, [
