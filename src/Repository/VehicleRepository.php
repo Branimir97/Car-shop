@@ -27,7 +27,6 @@ class VehicleRepository extends ServiceEntityRepository
             ->setParameter('visibility', 1)
             ->setParameter('status', "Na lageru");
 
-
         return $query->getQuery()->execute();
     }
 

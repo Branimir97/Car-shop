@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\User;
 use App\Entity\Vehicle;
+use App\Repository\ImageRepository;
 use App\Repository\UserRepository;
 use App\Repository\VehicleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,11 +18,14 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      * @param VehicleRepository $vehicleRepository
+     * @param ImageRepository $imageRepository
      * @return Response
      */
-    public function index(VehicleRepository $vehicleRepository)
+    public function index(VehicleRepository $vehicleRepository, ImageRepository $imageRepository)
     {
         $vehicles = $vehicleRepository->findAllAvailableAndVisible();
+
+
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
@@ -31,19 +36,22 @@ class HomeController extends AbstractController
     /**
      * @Route("vehicle/{id}/details", name="vehicle_details")
      * @param Request $request
-     * @param VehicleRepository $vehicleRepository
+     * @param ImageRepository $imageRepository
      * @return Response
      */
-    public function details(Request $request, VehicleRepository $vehicleRepository)
+    public function details(Request $request, ImageRepository $imageRepository)
     {
 
         $vehicle_id = $request->get('id');
 
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
 
+        $image = $imageRepository->findByVehicle($vehicle_id);
+
         return $this->render('home/details.html.twig', [
             'controller_name' => 'HomeController',
             'vehicle' => $vehicle,
+            'image' => $image
         ]);
     }
 

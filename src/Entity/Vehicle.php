@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VehicleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -86,6 +88,22 @@ class Vehicle
      * @ORM\Column(type="boolean")
      */
     private $visibility;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="vehicle")
+     */
+    private $images;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Inquirie::class, mappedBy="vehicle")
+     */
+    private $inquiries;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+        $this->inquiries = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -256,6 +274,68 @@ class Vehicle
     public function setVisibility(bool $visibility): self
     {
         $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setVehicle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getVehicle() === $this) {
+                $image->setVehicle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Inquirie[]
+     */
+    public function getInquiries(): Collection
+    {
+        return $this->inquiries;
+    }
+
+    public function addInquiry(Inquirie $inquiry): self
+    {
+        if (!$this->inquiries->contains($inquiry)) {
+            $this->inquiries[] = $inquiry;
+            $inquiry->setVehicle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInquiry(Inquirie $inquiry): self
+    {
+        if ($this->inquiries->contains($inquiry)) {
+            $this->inquiries->removeElement($inquiry);
+            // set the owning side to null (unless already changed)
+            if ($inquiry->getVehicle() === $this) {
+                $inquiry->setVehicle(null);
+            }
+        }
 
         return $this;
     }

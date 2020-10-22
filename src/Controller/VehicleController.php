@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Vehicle;
+use App\Form\InquirieFormType;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
+use App\Service\UploaderHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -36,9 +39,10 @@ class VehicleController extends AbstractController
     /**
      * @Route("/new", name="vehicle_new", methods={"GET","POST"})
      * @param Request $request
+     * @param UploaderHelper $uploaderHelper
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UploaderHelper $uploaderHelper): Response
     {
         if($this->isGranted('ROLE_ADMIN'))
         {
@@ -52,6 +56,18 @@ class VehicleController extends AbstractController
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($vehicle);
+                $entityManager->flush();
+
+                /** @var UploadedFile $uploadedFile */
+
+                $uploadedFile = $form->get('imageFile')->getData();
+                $newFileName = $uploaderHelper->uploadVehicleImage($uploadedFile);
+                $image = new Image();
+                $image->setImagePath($newFileName);
+                $image->setVehicle($vehicle);
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($image);
                 $entityManager->flush();
 
                 return $this->redirectToRoute('vehicle_index');
@@ -90,7 +106,7 @@ class VehicleController extends AbstractController
      * @param Vehicle $vehicle
      * @return Response
      */
-    public function edit(Request $request, Vehicle $vehicle): Response
+    public function edit(Request $request, Vehicle $vehicle, UploaderHelper $uploaderHelper): Response
     {
 
         if($this->isGranted('ROLE_ADMIN'))
@@ -100,7 +116,6 @@ class VehicleController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
-
                 return $this->redirectToRoute('vehicle_index');
             }
 
@@ -159,22 +174,5 @@ class VehicleController extends AbstractController
         }
         $this->addFlash('warning', "Permission denied.");
         return $this->redirectToRoute('home');
-    }
-
-    /**
-     * @Route("/upload", name="upload_test")
-     */
-    public function temporaryUploadAction(Request $request)
-    {
-
-        /** @var UploadedFile $uploadedFile */
-        $uploadedFile = $request->files->get('image');
-
-        $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
-
-        $originalFileName = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $newFileName = $originalFileName .'-'. uniqid() .'.'.$uploadedFile->guessExtension();
-
-        dd($uploadedFile->move($destination, $newFileName));
     }
 }

@@ -9,6 +9,7 @@
 
     <table class="table mt-3">
         <tbody>
+
         <tr>
             <th>Id</th>
             <td>{{ vehicle.id }}</td>
@@ -64,6 +65,6 @@
         </tbody>
     </table>
 
-    <p>You're interested for this vehicle? Send us contact <a href="">form</a>.</p>
+    <p>You're interested for this vehicle? Send us contact <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">form</a>.</p>
 
 {% endblock %}
