@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Vehicle;
 use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -18,6 +19,8 @@ class VehicleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $required = $options['required'];
         $builder
             ->add('status', ChoiceType::class, [
                 'choices' => [
@@ -63,17 +66,22 @@ class VehicleType extends AbstractType
                 ]
             ])
             ->add('consumption')
-            ->add('price')
-            ->add('imageFile', FileType::class, [
+            ->add('price');
+
+        if($required)
+        {
+            $builder ->add('imageFile', FileType::class, [
                 'mapped' => false,
-                'multiple' => true
+                'multiple' => true,
             ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Vehicle::class,
+            'required' => true,
         ]);
     }
 }

@@ -85,9 +85,9 @@ class Vehicle
     private $user;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":1})
      */
-    private $visibility;
+    private $visibility=1;
 
     /**
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="vehicle", orphanRemoval=true)

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Image;
 use App\Entity\Vehicle;
-use App\Form\InquirieFormType;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
 use App\Service\UploaderHelper;
@@ -48,16 +47,13 @@ class VehicleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $vehicle->setUser($this->getUser());
-            $vehicle->setVisibility(1);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($vehicle);
             $entityManager->flush();
 
             /** @var UploadedFile $uploadedFile */
-
             $uploadedFiles = $form->get('imageFile')->getData();
-
             foreach ($uploadedFiles as $uploadedFile)
             {
                 $newFileName = $uploaderHelper->uploadVehicleImage($uploadedFile);
@@ -71,7 +67,6 @@ class VehicleController extends AbstractController
             }
             return $this->redirectToRoute('vehicle_index');
         }
-
         return $this->render('vehicle/new.html.twig', [
             'vehicle' => $vehicle,
             'form' => $form->createView(),
@@ -98,7 +93,7 @@ class VehicleController extends AbstractController
      */
     public function edit(Request $request, Vehicle $vehicle): Response
     {
-        $form = $this->createForm(VehicleType::class, $vehicle);
+        $form = $this->createForm(VehicleType::class, $vehicle, ['required'=>false]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -145,7 +140,6 @@ class VehicleController extends AbstractController
         }
         $entityManager->persist($vehicle);
         $entityManager->flush();
-
         return $this->redirectToRoute('vehicle_index');
     }
 }

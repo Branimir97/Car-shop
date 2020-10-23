@@ -24,16 +24,9 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-
-        if($this->isGranted('ROLE_ADMIN'))
-        {
-            return $this->render('user/index.html.twig', [
-                'users' => $userRepository->findAll(),
-            ]);
-        }
-
-        $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
+        return $this->render('user/index.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
     }
 
     /**
@@ -44,54 +37,41 @@ class UserController extends AbstractController
      */
     public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
 
-        if($this->isGranted('ROLE_ADMIN'))
-        {
-            $user = new User();
-            $form = $this->createForm(UserType::class, $user);
-            $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
-                $user->setPassword(
-                    $passwordEncoder->encodePassword(
-                        $user,
-                        $form->get('plainPassword')->getData()
-                    )
-                );
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($user);
-                $entityManager->flush();
-
-                return $this->redirectToRoute('user_index');
-            }
-
-            return $this->render('user/new.html.twig', [
-                'user' => $user,
-                'form' => $form->createView(),
-            ]);
+            return $this->redirectToRoute('user_index');
         }
 
-        $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
-
+        return $this->render('user/new.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
+     * @param User $user
+     * @return Response
      */
     public function show(User $user): Response
     {
-
-        if($this->isGranted('ROLE_ADMIN'))
-        {
-            return $this->render('user/show.html.twig', [
-                'user' => $user,
-            ]);
-        }
-
-        $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -103,34 +83,18 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        $form = $this->createForm(UserType::class, $user, ['required'=>false]);
+        $form->handleRequest($request);
 
-        if($this->isGranted('ROLE_ADMIN'))
-        {
-            $form = $this->createForm(UserType::class, $user);
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-
-                $user->setPassword(
-                    $passwordEncoder->encodePassword(
-                        $user,
-                        $form->get('plainPassword')->getData())
-                );
-
-                $this->getDoctrine()->getManager()->flush();
-
-                return $this->redirectToRoute('user_index');
-            }
-
-            return $this->render('user/edit.html.twig', [
-                'user' => $user,
-                'form' => $form->createView(),
-            ]);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('user_index');
         }
 
-        $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
-
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -141,18 +105,12 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user): Response
     {
-        if($this->isGranted('ROLE_ADMIN'))
-        {
-            if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->remove($user);
-                $entityManager->flush();
-            }
-
-            return $this->redirectToRoute('user_index');
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($user);
+            $entityManager->flush();
         }
 
-        $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('user_index');
     }
 }

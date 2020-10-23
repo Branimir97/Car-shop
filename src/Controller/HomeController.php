@@ -22,7 +22,6 @@ class HomeController extends AbstractController
     public function index(VehicleRepository $vehicleRepository)
     {
         $vehicles = $vehicleRepository->findAllAvailableAndVisible();
-
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'vehicles' => $vehicles,
@@ -38,7 +37,6 @@ class HomeController extends AbstractController
     {
         $vehicle_id = $request->get('id');
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
-
         return $this->render('home/details.html.twig', [
             'controller_name' => 'HomeController',
             'vehicle' => $vehicle,
