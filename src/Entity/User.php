@@ -54,7 +54,7 @@ class User implements UserInterface
     private $vehicles;
 
     /**
-     * @ORM\OneToMany(targetEntity=Inquirie::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Inquirie::class, mappedBy="user", orphanRemoval=true)
      */
     private $inquiries;
 

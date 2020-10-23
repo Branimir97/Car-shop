@@ -64,7 +64,9 @@
         </tr>
 
         <tr>
-            <img src="{{asset("uploads/")~image}}">
+            {% for image in images %}
+            <img src="{{asset("uploads/")~image.imagePath}}">
+            {% endfor %}
         </tr>
         </tbody>
     </table>

@@ -66,6 +66,7 @@ class VehicleType extends AbstractType
             ->add('price')
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
+                'multiple' => true
             ]);
     }
 

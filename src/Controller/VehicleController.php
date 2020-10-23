@@ -60,16 +60,19 @@ class VehicleController extends AbstractController
 
                 /** @var UploadedFile $uploadedFile */
 
-                $uploadedFile = $form->get('imageFile')->getData();
-                $newFileName = $uploaderHelper->uploadVehicleImage($uploadedFile);
-                $image = new Image();
-                $image->setImagePath($newFileName);
-                $image->setVehicle($vehicle);
+                $uploadedFiles = $form->get('imageFile')->getData();
 
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($image);
-                $entityManager->flush();
+                foreach ($uploadedFiles as $uploadedFile)
+                {
+                    $newFileName = $uploaderHelper->uploadVehicleImage($uploadedFile);
+                    $image = new Image();
+                    $image->setImagePath($newFileName);
+                    $image->setVehicle($vehicle);
 
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($image);
+                    $entityManager->flush();
+                }
                 return $this->redirectToRoute('vehicle_index');
             }
 
@@ -89,7 +92,6 @@ class VehicleController extends AbstractController
      */
     public function show(Vehicle $vehicle): Response
     {
-
         if($this->isGranted('ROLE_ADMIN'))
         {
             return $this->render('vehicle/show.html.twig', [
@@ -106,9 +108,8 @@ class VehicleController extends AbstractController
      * @param Vehicle $vehicle
      * @return Response
      */
-    public function edit(Request $request, Vehicle $vehicle, UploaderHelper $uploaderHelper): Response
+    public function edit(Request $request, Vehicle $vehicle): Response
     {
-
         if($this->isGranted('ROLE_ADMIN'))
         {
             $form = $this->createForm(VehicleType::class, $vehicle);

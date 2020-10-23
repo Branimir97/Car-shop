@@ -24,10 +24,10 @@
 
     <h1 class="text-center p-3">Homepage</h1>
 
-    <div class="row">
+    <div class="row mb-4">
     {% for vehicle in vehicles %}
-        <div class="col-4 one_vehicle m-2">
-            <img src="https://fakeimg.pl/300x200/">
+        <div class="col-4 one_vehicle m-3">
+            <img src="{{ asset("uploads/")~vehicle.images[0].imagePath }}">
             <div class="vehicle_details text-center">
                 <p class="p-2 bg-danger text-white">
                     <span>{{ vehicle.mark }}</span>

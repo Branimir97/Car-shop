@@ -6,6 +6,7 @@ use App\Entity\Vehicle;
 use App\Form\InquirieFormType;
 use App\Repository\ImageRepository;
 use App\Repository\VehicleRepository;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,8 +22,11 @@ class HomeController extends AbstractController
      */
     public function index(VehicleRepository $vehicleRepository, ImageRepository $imageRepository)
     {
-        $vehicles = $vehicleRepository->findAllAvailableAndVisible();
+        $vehicles = $vehicleRepository->findAll();
+        //$images = $imageRepository->findAll();
+        //dd($vehicles[0]->getImages());
 
+        //dd($vehicles);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'vehicles' => $vehicles,
@@ -40,16 +44,14 @@ class HomeController extends AbstractController
         $vehicle_id = $request->get('id');
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
 
-        $image = $imageRepository->findBy([
+        $images = $imageRepository->findBy([
             'vehicle' => $vehicle
         ]);
-
-        $image_path = $image[0]->getImagePath();
 
         return $this->render('home/details.html.twig', [
             'controller_name' => 'HomeController',
             'vehicle' => $vehicle,
-            'image' => $image_path
+            'images' => $images
         ]);
     }
 
