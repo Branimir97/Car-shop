@@ -64,13 +64,15 @@
         </tr>
 
         <tr>
-            {% for image in images %}
-            <img src="{{asset("uploads/")~image.imagePath}}">
+            {% for image in vehicle.images %}
+                <img src="{{asset("uploads/")~image.imagePath}}">
             {% endfor %}
         </tr>
         </tbody>
     </table>
 
-    <p>You're interested for this vehicle? Send us contact <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">form</a>.</p>
+    {% if app.user %}
+        <p>You're interested for this vehicle? Send us contact <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">form</a>.</p>
+    {% endif %}
 
 {% endblock %}

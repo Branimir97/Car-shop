@@ -17,16 +17,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      * @param VehicleRepository $vehicleRepository
-     * @param ImageRepository $imageRepository
      * @return Response
      */
-    public function index(VehicleRepository $vehicleRepository, ImageRepository $imageRepository)
+    public function index(VehicleRepository $vehicleRepository)
     {
-        $vehicles = $vehicleRepository->findAll();
-        //$images = $imageRepository->findAll();
-        //dd($vehicles[0]->getImages());
+        $vehicles = $vehicleRepository->findAllAvailableAndVisible();
 
-        //dd($vehicles);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'vehicles' => $vehicles,
@@ -36,22 +32,16 @@ class HomeController extends AbstractController
     /**
      * @Route("vehicle/{id}/details", name="vehicle_details")
      * @param Request $request
-     * @param ImageRepository $imageRepository
      * @return Response
      */
-    public function details(Request $request, ImageRepository $imageRepository)
+    public function details(Request $request)
     {
         $vehicle_id = $request->get('id');
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
 
-        $images = $imageRepository->findBy([
-            'vehicle' => $vehicle
-        ]);
-
         return $this->render('home/details.html.twig', [
             'controller_name' => 'HomeController',
             'vehicle' => $vehicle,
-            'images' => $images
         ]);
     }
 

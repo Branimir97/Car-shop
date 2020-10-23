@@ -6,6 +6,7 @@ use App\Entity\Inquirie;
 use App\Entity\Vehicle;
 use App\Form\InquirieType;
 use App\Repository\InquirieRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/inquirie")
+ * @IsGranted("ROLE_ADMIN")
  */
 class InquirieController extends AbstractController
 {
@@ -24,57 +26,46 @@ class InquirieController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        if($this->isGranted('ROLE_USER'))
+        $inquirie = new Inquirie();
+        $form = $this->createForm(InquirieType::class, $inquirie);
+        $form->handleRequest($request);
+        $vehicle_id = $request->get('id');
+        /** @var Vehicle $vehicle */
+        $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
+        $vehicle_title = $vehicle->getMark().' '.$vehicle->getModel();
+        if($form->isSubmitted() && $form->isValid())
         {
-            $inquirie = new Inquirie();
-            $form = $this->createForm(InquirieType::class, $inquirie);
-            $form->handleRequest($request);
-            $vehicle_id = $request->get('id');
-            /** @var Vehicle $vehicle */
-            $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
-            $vehicle_title = $vehicle->getMark().' '.$vehicle->getModel();
-            if($form->isSubmitted() && $form->isValid())
-            {
-                $inquirie->setUser($this->getUser());
-                $inquirie->setVehicle($vehicle);
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($inquirie);
-                $entityManager->flush();
+            $inquirie->setUser($this->getUser());
+            $inquirie->setVehicle($vehicle);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($inquirie);
+            $entityManager->flush();
 
-                $vehicle->setStatus('Reserved');
-                $entityManager->persist($vehicle);
-                $entityManager->flush();
+            $vehicle->setStatus('Reserved');
+            $entityManager->persist($vehicle);
+            $entityManager->flush();
 
-                $this->addFlash('success', 'Thanks for sending us offer for this vehicle. Owner is gonna answer you soon!');
-                return $this->redirectToRoute('vehicle_details', ['id'=> $vehicle->getId()]);
-            }
-            return $this->render('inquirie/index.html.twig', [
-                'form' => $form->createView(),
-                'vehicle_title' => $vehicle_title
-            ]);
+            $this->addFlash('success', 'Thanks for sending us offer for this vehicle. Owner is gonna answer you soon!');
+            return $this->redirectToRoute('vehicle_details', ['id'=> $vehicle->getId()]);
         }
-
-        $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
+        return $this->render('inquirie/index.html.twig', [
+            'form' => $form->createView(),
+            'vehicle_title' => $vehicle_title
+        ]);
     }
 
     /**
-     * @Route("/list", name="inquirie_list", methods={"GET"})
+     * @Route("/", name="inquirie_list", methods={"GET"})
      * @param InquirieRepository $inquirieRepository
      * @return Response
      */
     public function show(InquirieRepository $inquirieRepository): Response
     {
-        if($this->isGranted('ROLE_ADMIN'))
-        {
-            $inquiries = $inquirieRepository->findAll();
+        $inquiries = $inquirieRepository->findAll();
 
-            return $this->render('inquirie/list.html.twig', [
-                'inquiries' => $inquiries,
-            ]);
-        }
-       $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
+        return $this->render('inquirie/list.html.twig', [
+            'inquiries' => $inquiries,
+        ]);
     }
 
     /**
@@ -124,30 +115,23 @@ class InquirieController extends AbstractController
      */
     public function acceptOffer(Request $request)
     {
+        $inquirie_id = $request->get('id');
+        $inquirie = $this->getDoctrine()->getRepository(Inquirie::class)->find($inquirie_id);
 
-        if($this->isGranted('ROLE_ADMIN'))
-        {
-            $inquirie_id = $request->get('id');
-            $inquirie = $this->getDoctrine()->getRepository(Inquirie::class)->find($inquirie_id);
+        $entityManager = $this->getDoctrine()->getManager();
 
-            $entityManager = $this->getDoctrine()->getManager();
+        $vehicle_id = $inquirie->getVehicle();
 
-            $vehicle_id = $inquirie->getVehicle();
+        $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
+        $vehicle->setStatus('Sold');
+        $entityManager->persist($vehicle);
+        $entityManager->flush();
 
-            $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
-            $vehicle->setStatus('Sold');
-            $entityManager->persist($vehicle);
-            $entityManager->flush();
+        $entityManager->remove($inquirie);
+        $entityManager->flush();
 
-            $entityManager->remove($inquirie);
-            $entityManager->flush();
-
-            $this->addFlash('warning', "Vehicle is sold out.");
-            return $this->redirectToRoute('inquirie_list');
-        }
-
-        $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
+        $this->addFlash('warning', "Vehicle is sold out.");
+        return $this->redirectToRoute('inquirie_list');
     }
 
     /**
@@ -157,29 +141,22 @@ class InquirieController extends AbstractController
      */
     public function declineOffer(Request $request)
     {
+        $inquirie_id = $request->get('id');
+        $inquirie = $this->getDoctrine()->getRepository(Inquirie::class)->find($inquirie_id);
 
-        if($this->isGranted('ROLE_ADMIN'))
-        {
-            $inquirie_id = $request->get('id');
-            $inquirie = $this->getDoctrine()->getRepository(Inquirie::class)->find($inquirie_id);
+        $entityManager = $this->getDoctrine()->getManager();
 
-            $entityManager = $this->getDoctrine()->getManager();
+        $vehicle_id = $inquirie->getVehicle();
 
-            $vehicle_id = $inquirie->getVehicle();
+        $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
+        $vehicle->setStatus('In stock');
+        $entityManager->persist($vehicle);
+        $entityManager->flush();
 
-            $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
-            $vehicle->setStatus('In stock');
-            $entityManager->persist($vehicle);
-            $entityManager->flush();
+        $entityManager->remove($inquirie);
+        $entityManager->flush();
 
-            $entityManager->remove($inquirie);
-            $entityManager->flush();
-
-            $this->addFlash('warning', "Vehicle is again available in stock.");
-            return $this->redirectToRoute('inquirie_list');
-        }
-
-        $this->addFlash('warning', "Permission denied.");
-        return $this->redirectToRoute('home');
+        $this->addFlash('warning', "Vehicle is again available in stock.");
+        return $this->redirectToRoute('inquirie_list');
     }
 }

@@ -90,7 +90,7 @@ class Vehicle
     private $visibility;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="vehicle", orphanRemoval=true, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="vehicle", orphanRemoval=true)
      */
     private $images;
 
