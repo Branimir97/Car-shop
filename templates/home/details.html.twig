@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicle{% endblock %}
+
+{% block body %}
+    <h1 class="text-center p-3">Vehicle <b><span style="color: #B0413E"> {{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
+
+    <a class="p-3" href="{{ path('home') }}"><i class="fas fa-arrow-circle-left"></i> Back to homepage</a>
+
+    {%
+        if app.user
+    %}<a href="#" id="favorite_vehicle"><i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
+    {% endif %}
+
+
+    <div id="Gallery">
+        {% for image in vehicle.images %}
+        <div class="gallery-item">
+            <a href="{{asset("uploads/")~image.imagePath}}"><img src="{{asset("uploads/")~image.imagePath}}" alt=""/></a>
+        </div>
+        {% endfor %}
+    </div><!--end #Gallery-->
+
+    <table class="table mt-3">
+        <tbody>
+
+        <tr>
+            <th>Id</th>
+            <td>{{ vehicle.id }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ vehicle.status }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ vehicle.type }}</td>
+        </tr>
+        <tr>
+            <th>Mark</th>
+            <td>{{ vehicle.mark }}</td>
+        </tr>
+        <tr>
+            <th>Model</th>
+            <td>{{ vehicle.model }}</td>
+        </tr>
+        <tr>
+            <th>ManufactureYear</th>
+            <td>{{ vehicle.manufactureYear }}</td>
+        </tr>
+        <tr>
+            <th>ModelYear</th>
+            <td>{{ vehicle.modelYear }}</td>
+        </tr>
+        <tr>
+            <th>Kilometers</th>
+            <td>{{ vehicle.kilometers }}</td>
+        </tr>
+        <tr>
+            <th>Power</th>
+            <td>{{ vehicle.power }}</td>
+        </tr>
+        <tr>
+            <th>Gearbox</th>
+            <td>{{ vehicle.gearbox }}</td>
+        </tr>
+        <tr>
+            <th>Gears</th>
+            <td>{{ vehicle.gears }}</td>
+        </tr>
+        <tr>
+            <th>Consumption</th>
+            <td>{{ vehicle.consumption }}</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>{{ vehicle.price }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    {% if app.user %}
+        <p>You're interested for this vehicle? Send us contact <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">form</a>.</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {% if app.user %}
+        <script>
+            $(document).ready(function () {
+                $('#favorite_vehicle').click(function () {
+                    $.ajax({
+                        url: '{{ url('favorite_vehicle_new') }}',
+                        type: 'POST',
+                        data: {
+                            vehicle: {{ vehicle.id }}
+                        },
+                        success: function () {
+                            if($('#icon').hasClass('far')) {
+                                $('#icon').removeClass('far').addClass('fas')
+                            } else {
+                                $('#icon').removeClass('fas').addClass('far')
+                            }
+                        }
+                    })
+                })
+            })
+
+
+            document.addEventListener('DOMContentLoaded', function(){
+                Code.photoSwipe('a', '#Gallery', { captionAndToolbarHideOnSwipe: false } );
+            }, false);
+
+        </script>
+    {% endif %}
+{% endblock %}

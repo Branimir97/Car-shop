@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Inquirie{% endblock %}
+
+{% block body %}
+    <h1>Edit Inquirie</h1>
+
+    {{ include('inquirie/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('inquirie_index') }}">back to list</a>
+
+    {{ include('inquirie/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicle manager{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center p-3">Welcome to vehicle manager</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Mark</th>
+                <th>Model</th>
+                <th>ManufactureYear</th>
+                <th>Kilometers</th>
+                <th>Gearbox</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.id }}</td>
+                <td>{{ vehicle.status }}</td>
+                <td>{{ vehicle.type }}</td>
+                <td>{{ vehicle.mark }}</td>
+                <td>{{ vehicle.model }}</td>
+                <td>{{ vehicle.manufactureYear }}</td>
+                <td>{{ vehicle.kilometers }}</td>
+                <td>{{ vehicle.gearbox }}</td>
+                <td>{{ vehicle.price }}</td>
+                <td>
+
+                    <a class="btn btn-primary" href="{{ path('vehicle_change_visibility', {'id': vehicle.id}) }}" title="Change visibility">
+                        {% if vehicle.visibility %}<i class="far fa-eye"></i>
+                    {% else %}
+                        <i class="far fa-eye-slash"></i>
+                    {% endif %}
+                    </a>
+
+                    <a class="btn btn-success" href="{{ path('vehicle_show', {'id': vehicle.id}) }}" title="Show details">
+                        <i class="fas fa-info-circle"></i></a>
+                    <a class="btn btn-warning" href="{{ path('vehicle_edit', {'id': vehicle.id}) }}" title="Edit vehicle">
+                        <i class="far fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">There are no vehicles in our database.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-success" href="{{ path('vehicle_new') }}">Create new vehicle</a>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#vehicles").addClass('active');
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicle{% endblock %}
+
+{% block body %}
+    <h1 class="text-center p-3">Vehicle <b><span style="color: #B0413E">{{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
+
+    <a class="p-3" href="{{ path('vehicle_index') }}"><i class="fas fa-arrow-circle-left"></i> Back to list</a>
+
+    <table class="table mt-3">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vehicle.id }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ vehicle.status }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ vehicle.type }}</td>
+            </tr>
+            <tr>
+                <th>Mark</th>
+                <td>{{ vehicle.mark }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ vehicle.model }}</td>
+            </tr>
+            <tr>
+                <th>ManufactureYear</th>
+                <td>{{ vehicle.manufactureYear }}</td>
+            </tr>
+            <tr>
+                <th>ModelYear</th>
+                <td>{{ vehicle.modelYear }}</td>
+            </tr>
+            <tr>
+                <th>Kilometers</th>
+                <td>{{ vehicle.kilometers }}</td>
+            </tr>
+            <tr>
+                <th>Power</th>
+                <td>{{ vehicle.power }}</td>
+            </tr>
+            <tr>
+                <th>Gearbox</th>
+                <td>{{ vehicle.gearbox }}</td>
+            </tr>
+            <tr>
+                <th>Gears</th>
+                <td>{{ vehicle.gears }}</td>
+            </tr>
+            <tr>
+                <th>Consumption</th>
+                <td>{{ vehicle.consumption }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ vehicle.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('vehicle_edit', {'id': vehicle.id}) }}">Edit vehicle</a>
+    {{ include('vehicle/_delete_form.html.twig') }}
+
+{% endblock %}

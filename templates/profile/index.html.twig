@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center p-3">User <b><span style="color: #B0413E">{{ app.user.firstName }} {{ app.user.lastName }}</span></b></h1>
+
+    <table class="table mt-3">
+        <tbody>
+        <tr>
+            <th>First_name</th>
+            <td>{{ app.user.firstName }}</td>
+        </tr>
+        <tr>
+            <th>Last_name</th>
+            <td>{{ app.user.lastName }}</td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td>{{ app.user.email }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a class="btn btn-success mb-2" href="{{ path('password_change') }}">Change password</a>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#profile").addClass('active');
+        })
+    </script>
+{% endblock %}
