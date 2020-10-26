@@ -7,6 +7,7 @@
 
     <a class="p-3" href="{{ path('home') }}"><i class="fas fa-arrow-circle-left"></i> Back to homepage</a>
 
+    <a href="#" id="favorite_vehicle"><i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
     <table class="table mt-3">
         <tbody>
 
@@ -75,4 +76,29 @@
         <p>You're interested for this vehicle? Send us contact <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">form</a>.</p>
     {% endif %}
 
+{% endblock %}
+
+{% block javascripts %}
+    {% if app.user %}
+        <script>
+            $(document).ready(function () {
+                $('#favorite_vehicle').click(function () {
+                    $.ajax({
+                        url: '{{ url('favorite_vehicle_new') }}',
+                        type: 'POST',
+                        data: {
+                            vehicle: {{ vehicle.id }}
+                        },
+                        success: function () {
+                            if($('#icon').hasClass('far')) {
+                                $('#icon').removeClass('far').addClass('fas')
+                            } else {
+                                $('#icon').removeClass('fas').addClass('far')
+                            }
+                        }
+                    })
+                })
+            })
+        </script>
+    {% endif %}
 {% endblock %}

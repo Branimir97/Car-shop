@@ -99,10 +99,16 @@ class Vehicle
      */
     private $inquiries;
 
+    /**
+     * @ORM\OneToMany(targetEntity=FavoriteVehicle::class, mappedBy="vehicle", orphanRemoval=true)
+     */
+    private $favoriteVehicles;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->inquiries = new ArrayCollection();
+        $this->favoriteVehicles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -334,6 +340,37 @@ class Vehicle
             // set the owning side to null (unless already changed)
             if ($inquiry->getVehicle() === $this) {
                 $inquiry->setVehicle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FavoriteVehicle[]
+     */
+    public function getFavoriteVehicles(): Collection
+    {
+        return $this->favoriteVehicles;
+    }
+
+    public function addFavoriteVehicle(FavoriteVehicle $favoriteVehicle): self
+    {
+        if (!$this->favoriteVehicles->contains($favoriteVehicle)) {
+            $this->favoriteVehicles[] = $favoriteVehicle;
+            $favoriteVehicle->setVehicle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteVehicle(FavoriteVehicle $favoriteVehicle): self
+    {
+        if ($this->favoriteVehicles->contains($favoriteVehicle)) {
+            $this->favoriteVehicles->removeElement($favoriteVehicle);
+            // set the owning side to null (unless already changed)
+            if ($favoriteVehicle->getVehicle() === $this) {
+                $favoriteVehicle->setVehicle(null);
             }
         }
 

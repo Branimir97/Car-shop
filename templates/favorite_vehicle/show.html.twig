@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FavoriteVehicle{% endblock %}
+
+{% block body %}
+    <h1>FavoriteVehicle</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ favorite_vehicle.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('favorite_vehicle_index') }}">back to list</a>
+
+    <a href="{{ path('favorite_vehicle_edit', {'id': favorite_vehicle.id}) }}">edit</a>
+
+    {{ include('favorite_vehicle/_delete_form.html.twig') }}
+{% endblock %}

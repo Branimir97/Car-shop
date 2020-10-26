@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\FavoriteVehicle;
 use App\Entity\Vehicle;
 use App\Form\InquirieFormType;
 use App\Repository\ImageRepository;
@@ -37,9 +38,14 @@ class HomeController extends AbstractController
     {
         $vehicle_id = $request->get('id');
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
+        $favoriteVehicle = $this->getDoctrine()->getRepository(FavoriteVehicle::class)->findOneBy([
+            'vehicle' => $vehicle,
+            'user' => $this->getUser()
+        ]);
         return $this->render('home/details.html.twig', [
             'controller_name' => 'HomeController',
             'vehicle' => $vehicle,
+            'favoriteVehicle' => $favoriteVehicle
         ]);
     }
 

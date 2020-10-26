@@ -58,10 +58,16 @@ class User implements UserInterface
      */
     private $inquiries;
 
+    /**
+     * @ORM\OneToMany(targetEntity=FavoriteVehicle::class, mappedBy="user")
+     */
+    private $favoriteVehicles;
+
     public function __construct()
     {
         $this->vehicles = new ArrayCollection();
         $this->inquiries = new ArrayCollection();
+        $this->favoriteVehicles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -222,6 +228,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($inquiry->getUser() === $this) {
                 $inquiry->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FavoriteVehicle[]
+     */
+    public function getFavoriteVehicles(): Collection
+    {
+        return $this->favoriteVehicles;
+    }
+
+    public function addFavoriteVehicle(FavoriteVehicle $favoriteVehicle): self
+    {
+        if (!$this->favoriteVehicles->contains($favoriteVehicle)) {
+            $this->favoriteVehicles[] = $favoriteVehicle;
+            $favoriteVehicle->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteVehicle(FavoriteVehicle $favoriteVehicle): self
+    {
+        if ($this->favoriteVehicles->contains($favoriteVehicle)) {
+            $this->favoriteVehicles->removeElement($favoriteVehicle);
+            // set the owning side to null (unless already changed)
+            if ($favoriteVehicle->getUser() === $this) {
+                $favoriteVehicle->setUser(null);
             }
         }
 

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Favorite vehicles{% endblock %}
+
+{% block body %}
+    <h1>Your Favorite vehicles</h1>
+    <div class="row">
+        <div class="col-lg-12 my-3">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button class="btn" id="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="btn" id="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="products" class="row view-group">
+        {% for favorite_vehicle in favorite_vehicles %}
+            <div class="item col-xs-4 col-lg-4">
+                <div class="thumbnail card">
+                    <div class="img-event">
+                        <img class="group list-group-image img-fluid" src="{{ asset("uploads/"~favorite_vehicle.vehicle.images[0].imagePath) }}" alt="" />
+                    </div>
+                    <div class="caption card-body">
+                        <h4 class="group card-title inner list-group-item-heading">
+                            {{ favorite_vehicle.vehicle.mark }} {{ favorite_vehicle.vehicle.model }}</h4>
+                        <p class="group inner list-group-item-text">
+                        </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">
+                                    {{ favorite_vehicle.vehicle.price }} €</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <a class="btn btn-success" href="{{ path("vehicle_details", {id: favorite_vehicle.vehicle.id}) }}">Show details  <i class="fas fa-location-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
