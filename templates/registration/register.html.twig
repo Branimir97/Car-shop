@@ -24,3 +24,12 @@
 
     {{ form_end(registrationForm) }}
 {% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#register").addClass('active');
+        })
+    </script>
+{% endblock %}

@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>Your Favorite vehicles</h1>
+    {% if not favorite_vehicles %}
+        <p>No favorite vehicles.</p>
+    {% endif %}
     <div class="row">
         <div class="col-lg-12 my-3">
             <div class="pull-right">
@@ -45,4 +48,12 @@
         {% endfor %}
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#favorite_vehicles").addClass('active');
+        })
+    </script>
 {% endblock %}

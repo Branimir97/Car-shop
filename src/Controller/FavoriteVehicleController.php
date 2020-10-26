@@ -7,6 +7,7 @@ use App\Entity\Vehicle;
 use App\Form\FavoriteVehicleType;
 use App\Repository\FavoriteVehicleRepository;
 use App\Repository\VehicleRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,7 @@ use Symfony\Component\Validator\Constraints\Json;
 
 /**
  * @Route("/favorite/vehicle")
+ * @IsGranted("ROLE_USER")
  */
 class FavoriteVehicleController extends AbstractController
 {

@@ -13,74 +13,61 @@
 
 
         <link rel="stylesheet" href="{{ asset("css/home.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/navigation.css") }}">
 
         {% block stylesheets %}{% endblock %}
-
+        <script>
+            $(document).ready(function(){
+                $(".hamburger").click(function(){
+                    $(".nav-bar-right").toggleClass("active");
+                });
+            });
+        </script>
     </head>
     <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('home') }}">Home</a>
-                </li>
-                {% if app.user %}
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('user_profile') }}">My profile</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('favorite_vehicle_index') }}">Favorite vehicles</a>
-                    </li>
-
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('vehicle_index') }}">Vehicles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('user_index') }}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('inquirie_list') }}">Inquiries</a>
-                        </li>
+    <div class="wrapper">
+        <div class="nav-bar">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <div class="nav-bar-left">
+                <a href="{{ path("home") }}">Home</a>
+            </div>
+            <div class="nav-bar-right">
+                <ul>
+                    {% if app.user %}
+                        <li><a id="profile" href="{{ path("user_profile") }}">My profile</a></li>
+                        <li><a id="favorite_vehicles" href="{{ path("favorite_vehicle_index") }}">Favorite vehicles</a></li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li><a id="vehicles" href="{{ path("vehicle_index") }}">Vehicles</a></li>
+                            <li><a id="users" href="{{ path("user_index") }}">Users</a></li>
+                            <li><a id="inquiries" href="{{ path("inquirie_list") }}">Inquiries</a></li>
+                        {% endif %}
                     {% endif %}
 
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav">
-                {% if not app.user %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_register') }}">Register</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-                    </li>
-                {% endif %}
-            </ul>
+                    {% if not app.user %}
+                        <li><a id="login" href="{{ path("app_login") }}">Login</a></li>
+                        <li><a id="register" href="{{ path("app_register") }}">Register</a></li>
+                        {% else %}
+                            <li><a href="{{ path("app_logout") }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </nav>
-
-        <div class="container">
-            {% for label, messages in  app.flashes(['success', 'warning']) %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }}" role="alert">
-                        {{ message }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                {% endfor %}
+    </div>
+    <div class="container">
+        {% for label, messages in  app.flashes(['success', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             {% endfor %}
-            {% block body %}{% endblock %}
-            {% block javascripts %}{% endblock %}
-        </div>
+        {% endfor %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </div>
     </body>
 </html>

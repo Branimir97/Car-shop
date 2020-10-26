@@ -23,3 +23,11 @@
     {% endfor %}
 
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#inquiries").addClass('active');
+        })
+    </script>
+{% endblock %}

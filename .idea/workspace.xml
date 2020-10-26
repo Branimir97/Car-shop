@@ -11,37 +11,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/VW_Passat_B8_Limousine_2.0_TDI_Highline-5f918cb0cfc9c.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/autonet_Opel_Astra_K_2015-09-04_otvorna-640x0-5f927fe4ad869.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/golfVi-5f91380f503e4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/skoda-octavia-1.6-tdi-slika-138522153-5f92d5b4c0172.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/skoda-octavia-1.6-tdi-slika-138522156-5f92d5b4c471b.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/skoda-octavia-1.6-tdi-slika-138522156-5f92db4b65456.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/skoda-octavia-1.6-tdi-slika-138522163-5f92d5b4c8f8b.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/skoda-octavia-1.6-tdi-slika-138522163-5f92dbb67240f.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/skoda-octavia-1.6-tdi-slika-138522166-5f92d5b4d0cd4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/skoda-octavia-1.6-tdi-slika-138522175-5f92d5b4d64f7.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/skoda-octavia-1.6-tdi-slika-138522175-5f92db1401667.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/volvo-v40-d3-slika-122527687-5f9276810510e.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/volvo-v40-d3-slika-122527687-5f92d2b56223c.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/volvo-v60-d3-a-slika-118422888-5f9276810a312.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/volvo-v60-d3-a-slika-118422888-5f92d2b5664e4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/vw-golf-vi-2.0-tdi-gtd-slika-119249424-5f927fa2bc280.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/vw-golf-vi-2.0-tdi-gtd-slika-119249435-5f927fa2c0f42.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/vw-golf-vi-2.0-tdi-gtd-slika-119249435-5f92d4af2cb6d.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/vw-golf-vi-2.0-tdi-gtd-slika-119249437-5f927fa2c5e09.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/vw-golf-vi-2.0-tdi-gtd-slika-119249440-5f927fa2ca385.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/vw-golf-vi-2.0-tdi-gtd-slika-119249451-5f927fa2cea55.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Vehicle.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Vehicle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/VehicleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VehicleType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/favorite_vehicle/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/favorite_vehicle/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/favorite_vehicle/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/favorite_vehicle/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/favorite_vehicle/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/favorite_vehicle/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/favorite_vehicle/show.html.twig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +187,7 @@
       <workItem from="1603261841137" duration="21498000" />
       <workItem from="1603346510530" duration="24007000" />
       <workItem from="1603433560525" duration="23964000" />
-      <workItem from="1603695992763" duration="5177000" />
+      <workItem from="1603695992763" duration="11745000" />
     </task>
     <servers />
   </component>

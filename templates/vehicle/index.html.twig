@@ -58,3 +58,12 @@
 
     <a class="btn btn-outline-success" href="{{ path('vehicle_new') }}">Create new vehicle</a>
 {% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#vehicles").addClass('active');
+        })
+    </script>
+{% endblock %}

@@ -7,7 +7,10 @@
 
     <a class="p-3" href="{{ path('home') }}"><i class="fas fa-arrow-circle-left"></i> Back to homepage</a>
 
-    <a href="#" id="favorite_vehicle"><i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
+    {%
+        if app.user
+    %}<a href="#" id="favorite_vehicle"><i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
+    {% endif %}
     <table class="table mt-3">
         <tbody>
 

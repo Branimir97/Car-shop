@@ -43,3 +43,11 @@
 
     <a class="btn btn-outline-success" href="{{ path('user_new') }}">Create new</a>
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#users").addClass('active');
+        })
+    </script>
+{% endblock %}
