@@ -23,6 +23,8 @@ class FavoriteVehicleController extends AbstractController
 {
     /**
      * @Route("/", name="favorite_vehicle_index", methods={"GET"})
+     * @param FavoriteVehicleRepository $favoriteVehicleRepository
+     * @return Response
      */
     public function index(FavoriteVehicleRepository $favoriteVehicleRepository): Response
     {
@@ -59,7 +61,6 @@ class FavoriteVehicleController extends AbstractController
 
             if ($favoriteVehicle) {
                 $entityManager->remove($favoriteVehicle);
-
             } else {
                 $favoriteVehicle = new FavoriteVehicle();
                 $favoriteVehicle->setUser($this->getUser());

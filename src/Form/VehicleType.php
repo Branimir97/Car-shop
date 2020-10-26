@@ -70,11 +70,6 @@ class VehicleType extends AbstractType
             $builder ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'multiple' => true,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '100K'
-                    ])
-                ]
             ]);
         }
     }

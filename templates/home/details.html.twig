@@ -9,7 +9,8 @@
 
     {%
         if app.user
-    %}<a href="#" id="favorite_vehicle"><i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
+    %}<a style="float: right" href="#" id="favorite_vehicle">Favorite or not
+        <i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
     {% endif %}
 
 
