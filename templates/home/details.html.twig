@@ -11,6 +11,16 @@
         if app.user
     %}<a href="#" id="favorite_vehicle"><i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
     {% endif %}
+
+
+    <div id="Gallery">
+        {% for image in vehicle.images %}
+        <div class="gallery-item">
+            <a href="{{asset("uploads/")~image.imagePath}}"><img src="{{asset("uploads/")~image.imagePath}}" alt=""/></a>
+        </div>
+        {% endfor %}
+    </div><!--end #Gallery-->
+
     <table class="table mt-3">
         <tbody>
 
@@ -67,11 +77,6 @@
             <td>{{ vehicle.price }}</td>
         </tr>
 
-        <tr>
-            {% for image in vehicle.images %}
-                <img src="{{asset("uploads/")~image.imagePath}}">
-            {% endfor %}
-        </tr>
         </tbody>
     </table>
 
@@ -102,6 +107,12 @@
                     })
                 })
             })
+
+
+            document.addEventListener('DOMContentLoaded', function(){
+                Code.photoSwipe('a', '#Gallery', { captionAndToolbarHideOnSwipe: false } );
+            }, false);
+
         </script>
     {% endif %}
 {% endblock %}
