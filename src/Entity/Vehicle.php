@@ -104,11 +104,17 @@ class Vehicle
      */
     private $favoriteVehicles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AdditionalEquipment::class, mappedBy="vehicle")
+     */
+    private $additionalEquipment;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->inquiries = new ArrayCollection();
         $this->favoriteVehicles = new ArrayCollection();
+        $this->additionalEquipment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -371,6 +377,37 @@ class Vehicle
             // set the owning side to null (unless already changed)
             if ($favoriteVehicle->getVehicle() === $this) {
                 $favoriteVehicle->setVehicle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AdditionalEquipment[]
+     */
+    public function getAdditionalEquipment(): Collection
+    {
+        return $this->additionalEquipment;
+    }
+
+    public function addAdditionalEquipment(AdditionalEquipment $additionalEquipment): self
+    {
+        if (!$this->additionalEquipment->contains($additionalEquipment)) {
+            $this->additionalEquipment[] = $additionalEquipment;
+            $additionalEquipment->setVehicle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdditionalEquipment(AdditionalEquipment $additionalEquipment): self
+    {
+        if ($this->additionalEquipment->contains($additionalEquipment)) {
+            $this->additionalEquipment->removeElement($additionalEquipment);
+            // set the owning side to null (unless already changed)
+            if ($additionalEquipment->getVehicle() === $this) {
+                $additionalEquipment->setVehicle(null);
             }
         }
 

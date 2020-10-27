@@ -12,10 +12,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/VehicleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VehicleType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vehicle/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vehicle/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdditionalEquipmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdditionalEquipmentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/AdditionalEquipment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/AdditionalEquipment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Vehicle.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Vehicle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/AdditionalEquipmentFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AdditionalEquipmentFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/additional_equipment/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/additional_equipment/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +180,7 @@
       <workItem from="1603346510530" duration="24007000" />
       <workItem from="1603433560525" duration="23964000" />
       <workItem from="1603695992763" duration="20367000" />
-      <workItem from="1603784034570" duration="5172000" />
+      <workItem from="1603784034570" duration="8891000" />
     </task>
     <servers />
   </component>
@@ -211,9 +212,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="694" y="344" width="521" height="384" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603719789255" />
-    <state x="693" y="297" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603364105264">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="493" y="208" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603797461052">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="493" y="208" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1603797461052" />
     <state x="693" y="297" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603364105264" />
     <state x="539" y="188" width="352" height="480" key="NewPhpClassDialog" timestamp="1603797189549">
       <screen x="0" y="0" width="1366" height="728" />

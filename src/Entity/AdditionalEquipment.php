@@ -182,6 +182,11 @@ class AdditionalEquipment
      */
     private $handsfree;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Vehicle::class, inversedBy="additionalEquipment")
+     */
+    private $vehicle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -579,6 +584,18 @@ class AdditionalEquipment
     public function setHandsfree(bool $handsfree): self
     {
         $this->handsfree = $handsfree;
+
+        return $this;
+    }
+
+    public function getVehicle(): ?Vehicle
+    {
+        return $this->vehicle;
+    }
+
+    public function setVehicle(?Vehicle $vehicle): self
+    {
+        $this->vehicle = $vehicle;
 
         return $this;
     }
