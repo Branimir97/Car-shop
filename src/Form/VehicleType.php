@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Vehicle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Image;
+use function Sodium\add;
 
 class VehicleType extends AbstractType
 {
@@ -72,6 +74,15 @@ class VehicleType extends AbstractType
                 'multiple' => true,
             ]);
         }
+        $builder
+        ->add('abs', CheckboxType::class, [
+            'mapped' => false,
+            'label' => 'ABS',
+        ])
+        ->add('esp', CheckboxType::class, [
+        'mapped' => false,
+        'label' => 'ESP',
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
