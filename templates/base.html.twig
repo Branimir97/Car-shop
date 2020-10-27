@@ -15,6 +15,12 @@
         <link rel="stylesheet" href="{{ asset("css/navigation.css") }}">
         <link rel="stylesheet" href="{{ asset("css/vehicle_details.css") }}">
 
+        <style>
+            body
+            {
+                background-color: wheat;
+            }
+        </style>
         {% block stylesheets %}{% endblock %}
         <script>
             $(document).ready(function(){
@@ -32,12 +38,11 @@
         </script>
     </head>
     <body>
-
     <div class="wrapper">
-        <div class="nav-bar">
+        <div class="nav-bar bg-light">
             <div class="hamburger"><i class="fas fa-bars"></i></div>
             <div class="nav-bar-left">
-                <a href="{{ path("home") }}">Home</a>
+                <a href="{{ path("home") }}">Car store</a>
             </div>
             <div class="nav-bar-right">
                 <ul>
@@ -61,7 +66,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container">
         {% for label, messages in  app.flashes(['success', 'warning']) %}
             {% for message in messages %}
                 <div class="alert alert-{{ label }}" role="alert">

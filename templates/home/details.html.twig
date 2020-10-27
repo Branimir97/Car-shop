@@ -3,11 +3,15 @@
 {% block title %}Vehicle{% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-3 bg-light"><b><span style="color: #B0413E"> {{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
+    <h1 class="text-center p-3 "><b>
+            <span style="color: #B0413E; text-decoration: underline">
+                {{ vehicle.mark }} {{ vehicle.model }}</span>
+        </b>
+    </h1>
 
     <div class="row mt-4">
-        <div class="col-sm-6">
-            <h3 class="text-center">Vehicle images</h3>
+        <div class="col-sm-8">
+            <h3 class="text-center"><i>Photos</i></h3>
             <div class="row mt-3">
             {% for image in vehicle.images %}
                 <div class="col-6">
@@ -21,8 +25,8 @@
 
 
         </div>
-        <div class="col-sm-6">
-            <h3>Vehicle details</h3>
+        <div class="col-sm-4">
+            <h3 class="text-center"><i>Details</i></h3>
             <p class="bg-light p-3">Status: <span style="color: limegreen">{{ vehicle.status }}</span></p>
             <p class="bg-light p-3">Type: {{ vehicle.type }}</p>
             <p class="bg-light p-3">Mark: {{ vehicle.mark }}</p>
@@ -39,17 +43,13 @@
     </div>
 
     <h2 class="text-center">Additional equipment</h2>
-    <div class="row">
-        {% for item in additionalEquipment %}
-            <div class="col-3">
-                <p>{{ item.isofix }}</p>
-            </div>
-        {% endfor %}
-    </div>
 
-    {%
-        if app.user
-    %}<a style="float: right" href="#" id="favorite_vehicle">Favorite or not
+    {% if additionalEquipment %}
+    <p>Varijabla: {{ additionalEquipment.abs }}</p>
+    {% endif %}
+
+    {% if app.user %}
+        <a style="float: right" href="#" id="favorite_vehicle">Favorite or not
         <i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
     {% endif %}
 

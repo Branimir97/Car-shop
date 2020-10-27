@@ -105,7 +105,7 @@ class Vehicle
     private $favoriteVehicles;
 
     /**
-     * @ORM\OneToMany(targetEntity=AdditionalEquipment::class, mappedBy="vehicle")
+     * @ORM\OneToMany(targetEntity=AdditionalEquipment::class, mappedBy="vehicle", orphanRemoval=true)
      */
     private $additionalEquipment;
 

@@ -1,72 +1,21 @@
-.view-group {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    padding-left: 0;
-    margin-bottom: 0;
-}
-.thumbnail
+.image-wrapper-main
 {
-    margin-bottom: 30px;
-    padding: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-}
-
-.item.list-group-item
-{
-    float: none;
     width: 100%;
-    background-color: #fff;
-    margin-bottom: 30px;
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding: 0 1rem;
-    border: 0;
-}
-.item.list-group-item .img-event {
-    float: left;
-    width: 30%;
+    height: 200px;
 }
 
-.item.list-group-item .list-group-image
-{
-    margin-right: 10px;
-}
-.item.list-group-item .thumbnail
-{
-    margin-bottom: 0px;
-    display: inline-block;
-}
-.item.list-group-item .caption
-{
-    float: left;
-    width: 70%;
-    margin: 0;
-}
-
-.item.list-group-item:before, .item.list-group-item:after
-{
-    display: table;
-    content: " ";
-}
-
-.item.list-group-item:after
-{
-    clear: both;
-}
-
-.img-wrapper
-{
-    width: 400px;
-    height: 250px;
-}
-
-.img-wrapper img
+.image-wrapper-main img
 {
     width: 100%;
     height: 100%;
+}
+
+.one_vehicle
+{
+    border: 1px solid gray;
+}
+
+.title-block
+{
+    height: 80px;
 }

@@ -13,12 +13,9 @@
                 <th>Status</th>
                 <th>Type</th>
                 <th>Mark</th>
-                <th>Model</th>
-                <th>ManufactureYear</th>
-                <th>Kilometers</th>
                 <th>Gearbox</th>
                 <th>Price</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,9 +25,6 @@
                 <td>{{ vehicle.status }}</td>
                 <td>{{ vehicle.type }}</td>
                 <td>{{ vehicle.mark }}</td>
-                <td>{{ vehicle.model }}</td>
-                <td>{{ vehicle.manufactureYear }}</td>
-                <td>{{ vehicle.kilometers }}</td>
                 <td>{{ vehicle.gearbox }}</td>
                 <td>{{ vehicle.price }}</td>
                 <td>
@@ -48,7 +42,6 @@
                         <i class="far fa-edit"></i></a>
                     <a class="btn btn-secondary" href="{{ path('additional_equipment_add', {'id': vehicle.id}) }}" title="Add additional equipment">
                         <i class="fas fa-plus"></i></a>
-
                 </td>
             </tr>
         {% else %}
