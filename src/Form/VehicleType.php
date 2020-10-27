@@ -74,15 +74,6 @@ class VehicleType extends AbstractType
                 'multiple' => true,
             ]);
         }
-        $builder
-        ->add('abs', CheckboxType::class, [
-            'mapped' => false,
-            'label' => 'ABS',
-        ])
-        ->add('esp', CheckboxType::class, [
-        'mapped' => false,
-        'label' => 'ESP',
-        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
