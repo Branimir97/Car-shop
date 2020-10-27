@@ -3,9 +3,49 @@
 {% block title %}Vehicle{% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-3">Vehicle <b><span style="color: #B0413E"> {{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
+    <h1 class="text-center p-3 bg-light"><b><span style="color: #B0413E"> {{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
 
-    <a class="p-3" href="{{ path('home') }}"><i class="fas fa-arrow-circle-left"></i> Back to homepage</a>
+    <div class="row mt-4">
+        <div class="col-sm-6">
+            <h3 class="text-center">Vehicle images</h3>
+            <div class="row mt-3">
+            {% for image in vehicle.images %}
+                <div class="col-6">
+                <div class="image-wrapper">
+                    <a target="_blank" href="{{asset("uploads/")~image.imagePath}}"><img src="{{asset("uploads/")~image.imagePath}}" alt=""/></a>
+                </div>
+            </div>
+
+            {% endfor %}
+            </div>
+
+
+        </div>
+        <div class="col-sm-6">
+            <h3>Vehicle details</h3>
+            <p class="bg-light p-3">Status: <span style="color: limegreen">{{ vehicle.status }}</span></p>
+            <p class="bg-light p-3">Type: {{ vehicle.type }}</p>
+            <p class="bg-light p-3">Mark: {{ vehicle.mark }}</p>
+            <p class="bg-light p-3">Model: {{ vehicle.model }}</p>
+            <p class="bg-light p-3">Manufacture year: {{ vehicle.manufactureYear }}</p>
+            <p class="bg-light p-3">Model year: {{ vehicle.modelYear }}</p>
+            <p class="bg-light p-3">Kilometers: {{ vehicle.kilometers }}</p>
+            <p class="bg-light p-3">Power: {{ vehicle.power }}</p>
+            <p class="bg-light p-3">Gearbox: {{ vehicle.gearbox }}</p>
+            <p class="bg-light p-3">Gears: {{ vehicle.gears }}</p>
+            <p class="bg-light p-3">Consumption: {{ vehicle.consumption }}</p>
+            <p class="bg-light p-3">Price: {{ vehicle.price }}</p>
+        </div>
+    </div>
+
+    <h2 class="text-center">Additional equipment</h2>
+    <div class="row">
+        {% for item in additionalEquipment %}
+            <div class="col-3">
+                <p>{{ item.isofix }}</p>
+            </div>
+        {% endfor %}
+    </div>
 
     {%
         if app.user
@@ -13,73 +53,6 @@
         <i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
     {% endif %}
 
-
-    <div id="Gallery">
-        {% for image in vehicle.images %}
-        <div class="gallery-item">
-            <a href="{{asset("uploads/")~image.imagePath}}"><img src="{{asset("uploads/")~image.imagePath}}" alt=""/></a>
-        </div>
-        {% endfor %}
-    </div><!--end #Gallery-->
-
-    <table class="table mt-3">
-        <tbody>
-
-        <tr>
-            <th>Id</th>
-            <td>{{ vehicle.id }}</td>
-        </tr>
-        <tr>
-            <th>Status</th>
-            <td>{{ vehicle.status }}</td>
-        </tr>
-        <tr>
-            <th>Type</th>
-            <td>{{ vehicle.type }}</td>
-        </tr>
-        <tr>
-            <th>Mark</th>
-            <td>{{ vehicle.mark }}</td>
-        </tr>
-        <tr>
-            <th>Model</th>
-            <td>{{ vehicle.model }}</td>
-        </tr>
-        <tr>
-            <th>ManufactureYear</th>
-            <td>{{ vehicle.manufactureYear }}</td>
-        </tr>
-        <tr>
-            <th>ModelYear</th>
-            <td>{{ vehicle.modelYear }}</td>
-        </tr>
-        <tr>
-            <th>Kilometers</th>
-            <td>{{ vehicle.kilometers }}</td>
-        </tr>
-        <tr>
-            <th>Power</th>
-            <td>{{ vehicle.power }}</td>
-        </tr>
-        <tr>
-            <th>Gearbox</th>
-            <td>{{ vehicle.gearbox }}</td>
-        </tr>
-        <tr>
-            <th>Gears</th>
-            <td>{{ vehicle.gears }}</td>
-        </tr>
-        <tr>
-            <th>Consumption</th>
-            <td>{{ vehicle.consumption }}</td>
-        </tr>
-        <tr>
-            <th>Price</th>
-            <td>{{ vehicle.price }}</td>
-        </tr>
-
-        </tbody>
-    </table>
 
     {% if app.user %}
         <p>You're interested for this vehicle? Send us contact <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">form</a>.</p>

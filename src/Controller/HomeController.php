@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\AdditionalEquipment;
 use App\Entity\FavoriteVehicle;
 use App\Entity\Vehicle;
 use App\Form\InquirieFormType;
@@ -42,10 +43,16 @@ class HomeController extends AbstractController
             'vehicle' => $vehicle,
             'user' => $this->getUser()
         ]);
+
+        $additionalEquipment = $this->getDoctrine()->getRepository(AdditionalEquipment::class)->findOneBy([
+            'vehicle' => $vehicle
+        ]);
+        //dd($additionalEquipment);
         return $this->render('home/details.html.twig', [
             'controller_name' => 'HomeController',
             'vehicle' => $vehicle,
-            'favoriteVehicle' => $favoriteVehicle
+            'favoriteVehicle' => $favoriteVehicle,
+            'additionalEquipment' => $additionalEquipment
         ]);
     }
 
