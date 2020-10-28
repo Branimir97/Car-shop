@@ -17,11 +17,17 @@
             <div class="image-wrapper-main">
                 <img src="{{ asset("uploads/")~vehicle.images[0].imagePath }}" alt="">
             </div>
-            <div class="title-block my-auto">
+            <div class="title-block d-flex justify-content-center align-items-center">
                 <p class="p-2 m-0 text-center">{{ vehicle.mark }} {{ vehicle.model }}</p>
             </div>
 
-            <p class="p-2 m-0">Status: {{ vehicle.status }}</p>
+            <p class="p-2 m-0">Status:
+                {% if vehicle.status == "In stock" %}
+                    <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-check"></i></span>
+                 {% else %}
+                    <span style="color: red">{{ vehicle.status }} <i class="fas fa-route"></i></span>
+                {% endif %}
+            </p>
 
             <a style="float: right" class="btn btn-success" href="{{ path("vehicle_details", { id: vehicle.id}) }}">
                 Show details <i class="fas fa-angle-double-right"></i></a>

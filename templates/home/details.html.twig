@@ -8,37 +8,39 @@
                 {{ vehicle.mark }} {{ vehicle.model }}</span>
         </b>
     </h1>
-
     <div class="row mt-4">
         <div class="col-sm-8">
             <h3 class="text-center"><i>Photos</i></h3>
             <div class="row mt-3">
-            {% for image in vehicle.images %}
-                <div class="col-6">
-                <div class="image-wrapper">
-                    <a target="_blank" href="{{asset("uploads/")~image.imagePath}}"><img src="{{asset("uploads/")~image.imagePath}}" alt=""/></a>
+                {% for image in vehicle.images %}
+                    <div class="col-6">
+                    <div class="image-wrapper">
+                        <a target="_blank" href="{{asset("uploads/")~image.imagePath}}"><img src="{{asset("uploads/")~image.imagePath}}" alt=""/></a>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-
-            {% endfor %}
-            </div>
-
-
         </div>
         <div class="col-sm-4">
             <h3 class="text-center"><i>Details</i></h3>
-            <p class="bg-light p-3">Status: <span style="color: limegreen">{{ vehicle.status }}</span></p>
-            <p class="bg-light p-3">Type: {{ vehicle.type }}</p>
+            <p class="bg-light p-3">Status:
+                {% if vehicle.status == "In stock" %}
+                    <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-check"></i></span>
+                {% else %}
+                    <span style="color: red">{{ vehicle.status }} <i class="fas fa-route"></i></span>
+                {% endif %}
+            </p>
+            <p class="bg-light p-3">Type: <strong>{{ vehicle.type }}</strong>
             <p class="bg-light p-3">Mark: {{ vehicle.mark }}</p>
             <p class="bg-light p-3">Model: {{ vehicle.model }}</p>
-            <p class="bg-light p-3">Manufacture year: {{ vehicle.manufactureYear }}</p>
-            <p class="bg-light p-3">Model year: {{ vehicle.modelYear }}</p>
-            <p class="bg-light p-3">Kilometers: {{ vehicle.kilometers }}</p>
-            <p class="bg-light p-3">Power: {{ vehicle.power }}</p>
+            <p class="bg-light p-3">Manufacture year: {{ vehicle.manufactureYear }}.</p>
+            <p class="bg-light p-3">Model year: {{ vehicle.modelYear }}.</p>
+            <p class="bg-light p-3">Kilometers: {{ vehicle.kilometers|number_format('0', '.', '.')}}</p>
+            <p class="bg-light p-3">Power: {{ vehicle.power }} kW</p>
             <p class="bg-light p-3">Gearbox: {{ vehicle.gearbox }}</p>
             <p class="bg-light p-3">Gears: {{ vehicle.gears }}</p>
-            <p class="bg-light p-3">Consumption: {{ vehicle.consumption }}</p>
-            <p class="bg-light p-3">Price: {{ vehicle.price }}</p>
+            <p class="bg-light p-3">Consumption: {{ vehicle.consumption }} L/100km</p>
+            <p class="bg-light p-3">Price: {{ vehicle.price|number_format('0', '.', '.') }} kn</p>
         </div>
     </div>
 
@@ -81,8 +83,6 @@
                     })
                 })
             })
-
-
             document.addEventListener('DOMContentLoaded', function(){
                 Code.photoSwipe('a', '#Gallery', { captionAndToolbarHideOnSwipe: false } );
             }, false);

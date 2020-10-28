@@ -11,10 +11,10 @@
             <tr>
                 <th>Id</th>
                 <th>Status</th>
-                <th>Type</th>
                 <th>Mark</th>
+                <th>Model</th>
                 <th>Gearbox</th>
-                <th>Price</th>
+                <th>Price [kn]</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,10 +23,10 @@
             <tr>
                 <td>{{ vehicle.id }}</td>
                 <td>{{ vehicle.status }}</td>
-                <td>{{ vehicle.type }}</td>
                 <td>{{ vehicle.mark }}</td>
+                <td>{{ vehicle.model }}</td>
                 <td>{{ vehicle.gearbox }}</td>
-                <td>{{ vehicle.price }}</td>
+                <td>{{ vehicle.price|number_format('0', '.', '.') }}</td>
                 <td>
 
                     <a class="btn btn-primary" href="{{ path('vehicle_change_visibility', {'id': vehicle.id}) }}" title="Change visibility">

@@ -25,7 +25,7 @@ class VehicleRepository extends ServiceEntityRepository
             ->where('v.visibility = :visibility')
             ->andWhere('v.status = :status')
             ->setParameter('visibility', 1)
-            ->setParameter('status', "In stock")
+            ->setParameter('status', !"Reserved")
             ->orderBy('v.id', 'DESC');
 
         return $query->getQuery()->execute();

@@ -3,8 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Vehicle;
+use Doctrine\DBAL\Types\FloatType;
 use Doctrine\DBAL\Types\StringType;
 use Doctrine\DBAL\Types\TextType;
+use Doctrine\DBAL\Types\Type;
+use PhpParser\Node\Expr\Cast\Double;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -52,7 +55,9 @@ class VehicleType extends AbstractType
                 ]
             ])
             ->add('kilometers', IntegerType::class)
-            ->add('power', IntegerType::class)
+            ->add('power', IntegerType::class, [
+                'label' => "Power [kW]"
+            ])
             ->add('gearbox', ChoiceType::class, [
                 'choices' => [
                     'Manual' => 'Manual',
