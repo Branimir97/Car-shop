@@ -44,10 +44,15 @@
         </div>
     </div>
 
-    <h2 class="text-center">Additional equipment</h2>
+    <h2 class="text-center mt-3">Additional equipment</h2>
 
     {% if additionalEquipment %}
-    <p>Varijabla: {{ additionalEquipment.abs }}</p>
+        {% for fieldName in fieldNames %}
+
+        <p>{{ fieldName }}</p>
+        {% endfor %}
+    {% else %}
+        <p class="bg-light p-3 text-center mt-3">Additional equipment is not added for this vehicle. Check back soon.</p>
     {% endif %}
 
     {% if app.user %}

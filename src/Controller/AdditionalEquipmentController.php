@@ -29,10 +29,12 @@ class AdditionalEquipmentController extends AbstractController
         if($this->getUser() && $form->isSubmitted() && $form->isValid())
         {
             $additional_equipment->setVehicle($vehicle);
-            //dd($form->getData());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($additional_equipment);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Additional equipment successfully saved.');
+            return $this->redirectToRoute('vehicle_index');
         }
 
         return $this->render('additional_equipment/index.html.twig', [

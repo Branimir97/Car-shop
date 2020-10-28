@@ -47,11 +47,14 @@ class HomeController extends AbstractController
         $additionalEquipment = $this->getDoctrine()->getRepository(AdditionalEquipment::class)->findOneBy([
             'vehicle' => $vehicle
         ]);
-        //dd($additionalEquipment);
+        $entityManager = $this->getDoctrine()->getManager();
+        $fieldNames = $entityManager->getClassMetadata(AdditionalEquipment::class)->getFieldNames();
+
         return $this->render('home/details.html.twig', [
             'controller_name' => 'HomeController',
             'vehicle' => $vehicle,
             'favoriteVehicle' => $favoriteVehicle,
+            'fieldNames' => $fieldNames,
             'additionalEquipment' => $additionalEquipment
         ]);
     }

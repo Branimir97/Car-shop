@@ -61,7 +61,7 @@ class InquirieController extends AbstractController
      */
     public function show(InquirieRepository $inquirieRepository): Response
     {
-        $inquiries = $inquirieRepository->findAll();
+        $inquiries = $inquirieRepository->findBy([], ['id'=>'DESC']);
 
         return $this->render('inquirie/list.html.twig', [
             'inquiries' => $inquiries,

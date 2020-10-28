@@ -6,13 +6,13 @@
     <h1 class="text-center p-3">Active inquiries</h1>
 
     {% if not inquiries %}
-    <p>No inquiries.</p>
+        <p class="p-3 text-center bg-light">No inquiries at the moment.</p>
     {% endif %}
     {% for inquirie in inquiries %}
-        <div class="one_inquirie" style="background-color: #5eb5e0">
-            <p>Vehicle:<br><b>{{ inquirie.vehicle.mark }} {{ inquirie.vehicle.model }}</b></p>
-            <p>Content:<br><b>{{ inquirie.content }}</b></p>
-            <p>Form sent by:<br><b>{{ inquirie.user.firstName }} {{ inquirie.user.lastName }}</b></p>
+        <div class="one_inquirie text-center" style="background-color: lightyellow">
+            <p class="p-3">Vehicle:<br><i>{{ inquirie.vehicle.mark }} {{ inquirie.vehicle.model }}</i></p>
+            <p>Content:<br><i>{{ inquirie.content }}</i></p>
+            <p>Contact form sent by:<br><i>{{ inquirie.user.firstName }} {{ inquirie.user.lastName }}</i></p>
 
             <div class="text-center">
                 <a class="btn btn-success" href="{{ path('accept_offer', {id:inquirie.id})}}">Accept offer</a>

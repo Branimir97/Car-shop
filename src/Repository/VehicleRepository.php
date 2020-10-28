@@ -23,9 +23,9 @@ class VehicleRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('v')
             ->where('v.visibility = :visibility')
-            ->andWhere('v.status = :status')
+            ->andWhere('v.status != :status')
             ->setParameter('visibility', 1)
-            ->setParameter('status', !"Reserved")
+            ->setParameter('status', "Reserved")
             ->orderBy('v.id', 'DESC');
 
         return $query->getQuery()->execute();

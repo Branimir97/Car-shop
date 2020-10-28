@@ -28,7 +28,6 @@ class FavoriteVehicleController extends AbstractController
      */
     public function index(FavoriteVehicleRepository $favoriteVehicleRepository): Response
     {
-
         return $this->render('favorite_vehicle/index.html.twig', [
             'favorite_vehicles' => $favoriteVehicleRepository->findBy([
                 'user' => $this->getUser()

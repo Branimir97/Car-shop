@@ -31,19 +31,19 @@
             </tr>
             <tr>
                 <th>ManufactureYear</th>
-                <td>{{ vehicle.manufactureYear }}</td>
+                <td>{{ vehicle.manufactureYear }}.</td>
             </tr>
             <tr>
                 <th>ModelYear</th>
-                <td>{{ vehicle.modelYear }}</td>
+                <td>{{ vehicle.modelYear }}.</td>
             </tr>
             <tr>
                 <th>Kilometers</th>
-                <td>{{ vehicle.kilometers }}</td>
+                <td>{{ vehicle.kilometers|number_format('0', '.', '.') }}</td>
             </tr>
             <tr>
                 <th>Power</th>
-                <td>{{ vehicle.power }}</td>
+                <td>{{ vehicle.power }} [kW]</td>
             </tr>
             <tr>
                 <th>Gearbox</th>
@@ -55,11 +55,11 @@
             </tr>
             <tr>
                 <th>Consumption</th>
-                <td>{{ vehicle.consumption }}</td>
+                <td>{{ vehicle.consumption }} L/100km</td>
             </tr>
             <tr>
                 <th>Price</th>
-                <td>{{ vehicle.price }}</td>
+                <td>{{ vehicle.price|number_format('0', '.', '.') }}</td>
             </tr>
         </tbody>
     </table>

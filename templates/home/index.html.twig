@@ -20,7 +20,6 @@
             <div class="title-block d-flex justify-content-center align-items-center">
                 <p class="p-2 m-0 text-center">{{ vehicle.mark }} {{ vehicle.model }}</p>
             </div>
-
             <p class="p-2 m-0">Status:
                 {% if vehicle.status == "In stock" %}
                     <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-check"></i></span>
@@ -28,11 +27,8 @@
                     <span style="color: red">{{ vehicle.status }} <i class="fas fa-route"></i></span>
                 {% endif %}
             </p>
-
             <a style="float: right" class="btn btn-success" href="{{ path("vehicle_details", { id: vehicle.id}) }}">
                 Show details <i class="fas fa-angle-double-right"></i></a>
-
-
         </div>
         {% endfor %}
     </div>
