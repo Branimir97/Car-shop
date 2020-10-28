@@ -13,15 +13,11 @@
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdditionalEquipmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdditionalEquipmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/InquirieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InquirieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/favorite_vehicle/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/favorite_vehicle/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/details.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inquirie/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inquirie/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vehicle/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/change_password.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/change_password.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +183,7 @@
       <workItem from="1603433560525" duration="23964000" />
       <workItem from="1603695992763" duration="20367000" />
       <workItem from="1603784034570" duration="25178000" />
-      <workItem from="1603869335920" duration="9428000" />
+      <workItem from="1603869335920" duration="14995000" />
     </task>
     <servers />
   </component>
