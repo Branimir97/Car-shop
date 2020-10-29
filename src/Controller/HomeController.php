@@ -8,6 +8,7 @@ use App\Entity\Vehicle;
 use App\Form\InquirieFormType;
 use App\Repository\ImageRepository;
 use App\Repository\VehicleRepository;
+use App\Service\APIService;
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,9 +34,10 @@ class HomeController extends AbstractController
     /**
      * @Route("vehicle/{id}/details", name="vehicle_details")
      * @param Request $request
+     * @param APIService $APIService
      * @return Response
      */
-    public function details(Request $request)
+    public function details(Request $request, APIService $APIService)
     {
         $vehicle_id = $request->get('id');
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
@@ -44,9 +46,14 @@ class HomeController extends AbstractController
             'user' => $this->getUser()
         ]);
 
+        $vehicle_price = $vehicle->getPrice();
+        $euroCourse = $APIService->fetchEuroCourse();
+        $vehicle->setPrice($vehicle_price*$euroCourse);
+
         $additionalEquipment = $this->getDoctrine()->getRepository(AdditionalEquipment::class)->findOneBy([
             'vehicle' => $vehicle
         ]);
+
         $entityManager = $this->getDoctrine()->getManager();
         $fieldNames = $entityManager->getClassMetadata(AdditionalEquipment::class)->getFieldNames();
 

@@ -6,6 +6,7 @@ use App\Entity\Image;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
+use App\Service\APIService;
 use App\Service\UploaderHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,8 +27,16 @@ class VehicleController extends AbstractController
      * @param VehicleRepository $vehicleRepository
      * @return Response
      */
-    public function index(VehicleRepository $vehicleRepository): Response
+    public function index(VehicleRepository $vehicleRepository, APIService $APIService): Response
     {
+
+        $vehicles = $vehicleRepository->findAll();
+        $euroCourse = $APIService->fetchEuroCourse();
+        foreach ($vehicles as $vehicle)
+        {
+            $vehicle->setPrice($vehicle->getPrice()*$euroCourse);
+        }
+
         return $this->render('vehicle/index.html.twig', [
             'vehicles' => $vehicleRepository->findAll(),
         ]);

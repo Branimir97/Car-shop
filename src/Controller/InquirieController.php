@@ -130,7 +130,7 @@ class InquirieController extends AbstractController
         $entityManager->remove($inquirie);
         $entityManager->flush();
 
-        $this->addFlash('warning', "Vehicle is sold out.");
+        $this->addFlash('success', "Vehicle is sold out.");
         return $this->redirectToRoute('inquirie_list');
     }
 

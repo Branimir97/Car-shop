@@ -13,7 +13,7 @@
             <h3 class="text-center"><i>Photos</i></h3>
             <div class="row mt-3">
                 {% for image in vehicle.images %}
-                    <div class="col-6">
+                    <div class="col-sm-6">
                     <div class="image-wrapper">
                         <a target="_blank" href="{{asset("uploads/")~image.imagePath}}"><img src="{{asset("uploads/")~image.imagePath}}" alt=""/></a>
                     </div>
@@ -27,7 +27,7 @@
                 {% if vehicle.status == "In stock" %}
                     <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-check"></i></span>
                 {% else %}
-                    <span style="color: red">{{ vehicle.status }} <i class="fas fa-route"></i></span>
+                    <span style="color: dodgerblue">{{ vehicle.status }} <i class="fas fa-route"></i></span>
                 {% endif %}
             </p>
             <p class="bg-light p-3">Type: <strong>{{ vehicle.type }}</strong>

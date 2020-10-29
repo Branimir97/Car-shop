@@ -22,7 +22,17 @@
         {% for vehicle in vehicles %}
             <tr>
                 <td>{{ vehicle.id }}</td>
-                <td>{{ vehicle.status }}</td>
+                <td>
+                    {% if vehicle.status == "In stock" %}
+                        <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-check"></i></span>
+                    {% elseif vehicle.status == "In arrival" %}
+                        <span style="color: dodgerblue">{{ vehicle.status }} <i class="fas fa-route"></i></span>
+                    {% elseif vehicle.status == "Reserved" %}
+                        <span style="color: red">{{ vehicle.status }} <i class="fas fa-hourglass-half"></i></span>
+                    {% else %}
+                        <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-hand-holding-usd"></i></span>
+                    {% endif %}
+                </td>
                 <td>{{ vehicle.mark }}</td>
                 <td>{{ vehicle.model }}</td>
                 <td>{{ vehicle.gearbox }}</td>
