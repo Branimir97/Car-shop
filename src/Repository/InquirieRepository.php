@@ -18,5 +18,4 @@ class InquirieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Inquirie::class);
     }
-
 }

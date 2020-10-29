@@ -32,5 +32,4 @@ class VehicleRepository extends ServiceEntityRepository
 
         return $query->getQuery()->execute();
     }
-
 }

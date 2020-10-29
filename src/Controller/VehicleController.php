@@ -27,16 +27,8 @@ class VehicleController extends AbstractController
      * @param VehicleRepository $vehicleRepository
      * @return Response
      */
-    public function index(VehicleRepository $vehicleRepository, APIService $APIService): Response
+    public function index(VehicleRepository $vehicleRepository): Response
     {
-
-        $vehicles = $vehicleRepository->findAll();
-        $euroCourse = $APIService->fetchEuroCourse();
-        foreach ($vehicles as $vehicle)
-        {
-            $vehicle->setPrice($vehicle->getPrice()*$euroCourse);
-        }
-
         return $this->render('vehicle/index.html.twig', [
             'vehicles' => $vehicleRepository->findAll(),
         ]);

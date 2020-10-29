@@ -12,9 +12,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/navigation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/AdditionalEquipmentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AdditionalEquipmentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/FavoriteVehicleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FavoriteVehicleRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ImageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ImageRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/InquirieRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/InquirieRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,8 +163,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates/home" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/templates/home" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -183,6 +188,7 @@
       <workItem from="1603869335920" duration="21883000" />
       <workItem from="1603908639319" duration="326000" />
       <workItem from="1603955703207" duration="5965000" />
+      <workItem from="1603986859657" duration="1456000" />
     </task>
     <servers />
   </component>

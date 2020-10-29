@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\FavoriteVehicle;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,32 +20,17 @@ class FavoriteVehicleRepository extends ServiceEntityRepository
         parent::__construct($registry, FavoriteVehicle::class);
     }
 
-    // /**
-    //  * @return FavoriteVehicle[] Returns an array of FavoriteVehicle objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllAvailableAndVisibleByUser()
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $query = $this->createQueryBuilder('v')
+            ->where('v.visibility = :visibility')
+            ->andWhere('v.status = :statusStock')
+            ->orWhere('v.status = :statusArrival')
+            ->setParameter('visibility', 1)
+            ->setParameter('statusStock', "In stock")
+            ->setParameter('statusArrival', 'In arrival')
+            ->orderBy('v.id', 'DESC');
 
-    /*
-    public function findOneBySomeField($value): ?FavoriteVehicle
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $query->getQuery()->execute();
     }
-    */
 }
