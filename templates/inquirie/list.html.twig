@@ -10,9 +10,9 @@
     {% endif %}
     {% for inquirie in inquiries %}
         <div class="one_inquirie text-center" style="background-color: lightyellow">
-            <p class="p-3">Vehicle:<br><i>{{ inquirie.vehicle.mark }} {{ inquirie.vehicle.model }}</i></p>
-            <p>Content:<br><i>{{ inquirie.content }}</i></p>
-            <p>Contact form sent by:<br><i>{{ inquirie.user.firstName }} {{ inquirie.user.lastName }}</i></p>
+            <p class="p-3"><strong>Vehicle:</strong><br><i>{{ inquirie.vehicle.mark }} {{ inquirie.vehicle.model }}</i></p>
+            <p><strong>Content:</strong><br><i>{{ inquirie.content }}</i></p>
+            <p><strong>Contact form sent by:</strong><br><i>{{ inquirie.user.firstName }} {{ inquirie.user.lastName }}</i></p>
 
             <div class="text-center">
                 <a class="btn btn-success" href="{{ path('accept_offer', {id:inquirie.id})}}">Accept offer</a>

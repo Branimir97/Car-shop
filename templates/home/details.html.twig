@@ -3,11 +3,19 @@
 {% block title %}{{ vehicle.mark }} {{ vehicle.model }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-3 "><b>
-            <span style="color: #B0413E; text-decoration: underline">
+    <h1 class="text-center p-3"><b>
+            <span class="bg-light">
                 {{ vehicle.mark }} {{ vehicle.model }}</span>
         </b>
     </h1>
+    {% if app.user %}
+        <div class="text-center">
+            <a href="#" class="bg-light p-1" id="favorite_vehicle"><span id="fav_veh_text">
+                    {% if favoriteVehicle %}Marked as favorite{% else %}Set as favorite{% endif %}
+                </span>
+            <i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
+        </div>
+    {% endif %}
     <div class="row mt-4">
         <div class="col-sm-8">
             <h3 class="text-center"><i>Photos</i></h3>
@@ -22,29 +30,29 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <h3 class="text-center"><i>Details</i></h3>
+            <h3 class="text-center mt-2"><i>Details</i></h3>
             <p class="bg-light p-3">Status:
                 {% if vehicle.status == "In stock" %}
-                    <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-check"></i></span>
+                    <span style="color: darkgreen"><strong>{{ vehicle.status }}</strong> <i class="fas fa-check"></i></span>
                 {% else %}
-                    <span style="color: dodgerblue">{{ vehicle.status }} <i class="fas fa-route"></i></span>
+                    <span style="color: dodgerblue"><strong>{{ vehicle.status }}</strong> <i class="fas fa-route"></i></span>
                 {% endif %}
             </p>
             <p class="bg-light p-3">Type: <strong>{{ vehicle.type }}</strong>
-            <p class="bg-light p-3">Mark: {{ vehicle.mark }}</p>
-            <p class="bg-light p-3">Model: {{ vehicle.model }}</p>
-            <p class="bg-light p-3">Manufacture year: {{ vehicle.manufactureYear }}.</p>
-            <p class="bg-light p-3">Model year: {{ vehicle.modelYear }}.</p>
-            <p class="bg-light p-3">Kilometers: {{ vehicle.kilometers|number_format('0', '.', '.')}}</p>
-            <p class="bg-light p-3">Power: {{ vehicle.power }} kW</p>
-            <p class="bg-light p-3">Gearbox: {{ vehicle.gearbox }}</p>
-            <p class="bg-light p-3">Gears: {{ vehicle.gears }}</p>
-            <p class="bg-light p-3">Consumption: {{ vehicle.consumption }} L/100km</p>
-            <p class="bg-light p-3">Price: {{ vehicle.price|number_format('0', '.', '.') }} kn</p>
+            <p class="bg-light p-3">Mark: <strong>{{ vehicle.mark }}</strong></p>
+            <p class="bg-light p-3">Model: <strong>{{ vehicle.model }}</strong></p>
+            <p class="bg-light p-3">Manufacture year: <strong>{{ vehicle.manufactureYear }}.</strong></p>
+            <p class="bg-light p-3">Model year: <strong>{{ vehicle.modelYear }}.</strong></p>
+            <p class="bg-light p-3">Kilometers: <strong>{{ vehicle.kilometers|number_format('0', '.', '.')}}</strong></p>
+            <p class="bg-light p-3">Power: <strong>{{ vehicle.power }} kW</strong></p>
+            <p class="bg-light p-3">Gearbox: <strong>{{ vehicle.gearbox }}</strong></p>
+            <p class="bg-light p-3">Gears: <strong>{{ vehicle.gears }}</strong></p>
+            <p class="bg-light p-3">Consumption: <strong>{{ vehicle.consumption }} L/100km</strong></p>
+            <p class="bg-light p-3">Price: <strong>{{ vehicle.price|number_format('0', '.', '.') }} kn</strong></p>
         </div>
     </div>
 
-    <h2 class="text-center mt-3">Additional equipment</h2>
+    <h2 class="text-center mt-3"><i>Additional equipment</i></h2>
 
     {% if additionalEquipment %}
         {% for fieldName in fieldNames %}
@@ -54,12 +62,6 @@
     {% else %}
         <p class="bg-light p-3 text-center mt-3">Additional equipment is not added for this vehicle. Check back soon.</p>
     {% endif %}
-
-    {% if app.user %}
-        <a style="float: right" href="#" id="favorite_vehicle">Favorite or not
-        <i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
-    {% endif %}
-
 
     {% if app.user %}
         <p>You're interested for this vehicle? Send us contact <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">form</a>.</p>
@@ -81,8 +83,10 @@
                         success: function () {
                             if($('#icon').hasClass('far')) {
                                 $('#icon').removeClass('far').addClass('fas')
+                                $('#fav_veh_text').text("Marked as favorite")
                             } else {
                                 $('#icon').removeClass('fas').addClass('far')
+                                $('#fav_veh_text').text("Set as favorite")
                             }
                         }
                     })

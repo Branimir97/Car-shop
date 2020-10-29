@@ -3,7 +3,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Comfortaa', cursive;
+    font-family: '', cursive;
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
@@ -29,8 +29,8 @@
 
 .nav-bar .nav-bar-left a{
     font-family: 'Coiny', cursive;
-    font-size: 35px;
-    color: #11c1f4;
+    font-size: 25px;
+    color: darkred;
 }
 
 .nav-bar .nav-bar-right ul li{
