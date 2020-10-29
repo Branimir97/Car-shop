@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1 class="text-center p-3"><b>
-            <span class="bg-light">
+            <span class="bg-light p-1" style="color: darkcyan">
                 {{ vehicle.mark }} {{ vehicle.model }}</span>
         </b>
     </h1>
@@ -48,7 +48,11 @@
             <p class="bg-light p-3">Gearbox: <strong>{{ vehicle.gearbox }}</strong></p>
             <p class="bg-light p-3">Gears: <strong>{{ vehicle.gears }}</strong></p>
             <p class="bg-light p-3">Consumption: <strong>{{ vehicle.consumption }} L/100km</strong></p>
-            <p class="bg-light p-3">Price: <strong>{{ vehicle.price|number_format('0', '.', '.') }} kn</strong></p>
+            <p class="bg-primary p-3 text-white">Price:
+                <strong>{{ vehicle.price|number_format('0', '.', '.') }} € ~
+                    {{ priceKn|number_format('0', '.', '.') }} kn
+                </strong>
+            </p>
         </div>
     </div>
 
@@ -64,7 +68,7 @@
     {% endif %}
 
     {% if app.user %}
-        <p>You're interested for this vehicle? Send us contact <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">form</a>.</p>
+        <p class="text-center"><span class="bg-light p-2">You're interested for this vehicle? Send us <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">inquirie</a>.</span></p>
     {% endif %}
 
 {% endblock %}

@@ -28,9 +28,9 @@
 }
 
 .nav-bar .nav-bar-left a{
-    font-family: 'Coiny', cursive;
+    font-family: '', cursive;
     font-size: 25px;
-    color: darkred;
+    color: darkcyan;
 }
 
 .nav-bar .nav-bar-right ul li{

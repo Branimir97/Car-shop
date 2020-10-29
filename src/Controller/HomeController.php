@@ -48,7 +48,6 @@ class HomeController extends AbstractController
 
         $vehicle_price = $vehicle->getPrice();
         $euroCourse = $APIService->fetchEuroCourse();
-        $vehicle->setPrice($vehicle_price*$euroCourse);
 
         $additionalEquipment = $this->getDoctrine()->getRepository(AdditionalEquipment::class)->findOneBy([
             'vehicle' => $vehicle
@@ -62,7 +61,8 @@ class HomeController extends AbstractController
             'vehicle' => $vehicle,
             'favoriteVehicle' => $favoriteVehicle,
             'fieldNames' => $fieldNames,
-            'additionalEquipment' => $additionalEquipment
+            'additionalEquipment' => $additionalEquipment,
+            'priceKn' => $vehicle_price*$euroCourse
         ]);
     }
 
