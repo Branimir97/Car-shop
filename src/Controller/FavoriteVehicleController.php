@@ -44,8 +44,6 @@ class FavoriteVehicleController extends AbstractController
      * @param FavoriteVehicleRepository $favoriteVehicleRepository
      * @return JsonResponse
      */
-
-
     public function new(Request $request, VehicleRepository $vehicleRepository, FavoriteVehicleRepository $favoriteVehicleRepository): JsonResponse
     {
         $vehicle_id = $request->request->get('vehicle');

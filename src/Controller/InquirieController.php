@@ -143,16 +143,13 @@ class InquirieController extends AbstractController
     {
         $inquirie_id = $request->get('id');
         $inquirie = $this->getDoctrine()->getRepository(Inquirie::class)->find($inquirie_id);
-
         $entityManager = $this->getDoctrine()->getManager();
-
         $vehicle_id = $inquirie->getVehicle();
-
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
         $vehicle->setStatus('In stock');
+
         $entityManager->persist($vehicle);
         $entityManager->flush();
-
         $entityManager->remove($inquirie);
         $entityManager->flush();
 

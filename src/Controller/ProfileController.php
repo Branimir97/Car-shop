@@ -18,7 +18,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * @Route("/profile")
  * @IsGranted("ROLE_USER")
  */
-
 class ProfileController extends AbstractController
 {
     /**

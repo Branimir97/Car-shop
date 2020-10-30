@@ -65,5 +65,4 @@ class HomeController extends AbstractController
             'priceKn' => $vehicle_price*$euroCourse
         ]);
     }
-
 }

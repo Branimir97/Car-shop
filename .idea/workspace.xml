@@ -13,13 +13,14 @@
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VehicleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AdditionalEquipmentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AdditionalEquipmentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/FavoriteVehicleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FavoriteVehicleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ImageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ImageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/InquirieRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/InquirieRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VehicleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vehicle/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/InquirieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InquirieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/FavoriteVehicleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/FavoriteVehicleType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/VehicleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VehicleType.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +189,8 @@
       <workItem from="1603869335920" duration="21883000" />
       <workItem from="1603908639319" duration="326000" />
       <workItem from="1603955703207" duration="5965000" />
-      <workItem from="1603986859657" duration="1456000" />
+      <workItem from="1603986859657" duration="1510000" />
+      <workItem from="1604041433483" duration="4020000" />
     </task>
     <servers />
   </component>

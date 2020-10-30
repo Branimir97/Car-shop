@@ -13,8 +13,7 @@ class FavoriteVehicleType extends AbstractType
     {
         $builder
             ->add('vehicle')
-            ->add('user')
-        ;
+            ->add('user');
     }
 
     public function configureOptions(OptionsResolver $resolver)
