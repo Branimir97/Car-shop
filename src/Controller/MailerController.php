@@ -24,8 +24,8 @@ class MailerController extends AbstractController
             ->from('branimir@gmail.com')
             ->to('abcd@gmail.com')
             ->subject('Test')
-            ->text('I sent new email')
-            ->twig
+            ->text('I sent new email');
+
 
         $mailer->send($email);
         return $this->redirectToRoute('home');

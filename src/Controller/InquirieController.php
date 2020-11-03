@@ -7,10 +7,13 @@ use App\Entity\Vehicle;
 use App\Form\InquirieType;
 use App\Repository\InquirieRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -22,9 +25,10 @@ class InquirieController extends AbstractController
     /**
      * @Route("/{id}/create", name="inquirie_create", methods={"GET", "POST"})
      * @param Request $request
+     * @param MailerInterface $mailer
      * @return Response
      */
-    public function index(Request $request): Response
+    public function index(Request $request, MailerInterface $mailer): Response
     {
         $inquirie = new Inquirie();
         $form = $this->createForm(InquirieType::class, $inquirie);
@@ -44,6 +48,18 @@ class InquirieController extends AbstractController
             $vehicle->setStatus('Reserved');
             $entityManager->persist($vehicle);
             $entityManager->flush();
+
+            $email = (new TemplatedEmail())
+                ->from($inquirie->getUser()->getEmail())
+                ->to('branimirb51@gmail.com')
+                ->subject("Inquirie for ".$vehicle_title)
+                ->htmlTemplate('emails/send_inquirie.html.twig')
+                ->context([
+                    'username' => $inquirie->getUser()->getFirstName(),
+                    'content' => $inquirie->getContent()
+                ]);
+
+            $mailer->send($email);
 
             $this->addFlash('success', 'Thanks for sending us offer for this vehicle. Owner is gonna answer you soon!');
             return $this->redirectToRoute('vehicle_details', ['id'=> $vehicle->getId()]);
