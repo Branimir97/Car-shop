@@ -12,6 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +185,11 @@
       <workItem from="1604041433483" duration="4020000" />
       <workItem from="1604169214031" duration="469000" />
       <workItem from="1604173519814" duration="13000" />
+      <workItem from="1604174041054" duration="1156000" />
+      <workItem from="1604227193602" duration="1020000" />
+      <workItem from="1604236160946" duration="751000" />
+      <workItem from="1604301582456" duration="1218000" />
+      <workItem from="1604394452834" duration="2182000" />
     </task>
     <servers />
   </component>
@@ -220,10 +226,10 @@
     </state>
     <state x="493" y="208" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1603801004470" />
     <state x="693" y="297" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603364105264" />
-    <state x="539" y="188" width="352" height="480" key="NewPhpClassDialog" timestamp="1603797189549">
+    <state x="539" y="188" width="394" height="480" key="NewPhpClassDialog" timestamp="1604395277882">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="539" y="188" width="352" height="480" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1603797189549" />
+    <state x="539" y="188" width="394" height="480" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1604395277882" />
     <state x="758" y="268" width="394" height="536" key="NewPhpClassDialog/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603719822940" />
     <state x="768" y="456" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603111988869">
       <screen x="0" y="0" width="1920" height="1040" />
