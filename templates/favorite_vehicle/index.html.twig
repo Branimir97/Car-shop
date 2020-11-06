@@ -15,7 +15,7 @@
 
     <div class="row">
         {% for favorite_vehicle in favorite_vehicles %}
-            <div class="col-3 bg-light one_vehicle p-0">
+            <div class="col-sm-3 bg-light one_vehicle p-0">
                 <div class="image-wrapper-main">
                     <img src="{{ asset("uploads/")~favorite_vehicle.vehicle.images[0].imagePath }}" alt="">
                 </div>
