@@ -63,7 +63,7 @@ class InquirieController extends AbstractController
                 $mailer->send($email);
             } catch (TransportExceptionInterface $transportException)
             {
-                $this->addFlash('warning', 'Email can not be send, not available at the moment.');
+                $this->addFlash('warning', 'Email can not be send, service is not available at the moment.');
             }
 
             $this->addFlash('success', 'Thanks for sending us offer for this vehicle. Owner is gonna answer you soon!');
