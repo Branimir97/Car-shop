@@ -12,10 +12,36 @@
   <component name="ChangeListManager">
     <list default="true" id="3b1973a0-33a1-4a23-8a0f-c4f897df34fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdditionalEquipmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdditionalEquipmentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FavoriteVehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/InquirieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InquirieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MailerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MailerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MailerController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Vehicle.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Vehicle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/VehicleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VehicleType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/FavoriteVehicleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FavoriteVehicleRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/APIService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/APIService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/UploaderHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UploaderHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/additional_equipment/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/additional_equipment/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/favorite_vehicle/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/favorite_vehicle/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inquirie/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inquirie/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inquirie/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inquirie/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/change_password.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/change_password.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vehicle/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicle/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +218,8 @@
       <workItem from="1604227193602" duration="1020000" />
       <workItem from="1604236160946" duration="751000" />
       <workItem from="1604301582456" duration="1218000" />
-      <workItem from="1604394452834" duration="4745000" />
+      <workItem from="1604394452834" duration="5505000" />
+      <workItem from="1604646501824" duration="13508000" />
     </task>
     <servers />
   </component>
@@ -234,9 +261,10 @@
     </state>
     <state x="539" y="188" width="394" height="480" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1604395277882" />
     <state x="758" y="268" width="394" height="536" key="NewPhpClassDialog/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603719822940" />
-    <state x="768" y="456" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603111988869">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="768" y="319" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604646507458">
+      <screen x="0" y="0" width="1920" height="728" />
     </state>
+    <state x="768" y="319" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1604646507458" />
     <state x="768" y="456" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1603111988869" />
     <state x="0" y="0" width="587" height="728" key="find.popup" timestamp="1603788166350">
       <screen x="0" y="0" width="1366" height="728" />

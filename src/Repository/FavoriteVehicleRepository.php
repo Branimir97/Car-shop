@@ -19,18 +19,4 @@ class FavoriteVehicleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, FavoriteVehicle::class);
     }
-
-    public function findAllAvailableAndVisibleByUser()
-    {
-        $query = $this->createQueryBuilder('v')
-            ->where('v.visibility = :visibility')
-            ->andWhere('v.status = :statusStock')
-            ->orWhere('v.status = :statusArrival')
-            ->setParameter('visibility', 1)
-            ->setParameter('statusStock', "In stock")
-            ->setParameter('statusArrival', 'In arrival')
-            ->orderBy('v.id', 'DESC');
-
-        return $query->getQuery()->execute();
-    }
 }

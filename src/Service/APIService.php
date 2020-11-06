@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class APIService
@@ -20,8 +19,6 @@ class APIService
             'https://api.exchangeratesapi.io/latest'
         );
 
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
         $content = $response->getContent();
         $content = $response->toArray();
 

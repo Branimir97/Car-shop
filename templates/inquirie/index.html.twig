@@ -4,7 +4,13 @@
 
 {% block body %}
 
-    <h1 class="text-center p-3">Create inquirie for vehicle {{ vehicle_title }}</h1>
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">New inquirie</span>
+        </b>
+    </h1>
+
+    <p class="text-center"><span class="bg-light p-1" style="color: darkcyan">Vehicle: <b>{{ vehicle_title }}</b></span></p>
 
     {{ form_start(form) }}
     {{ form_row(form.vehicle, {'value':vehicle_title}) }}

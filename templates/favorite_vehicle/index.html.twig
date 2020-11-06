@@ -3,7 +3,12 @@
 {% block title %}Favorite vehicles{% endblock %}
 
 {% block body %}
-    <h1 class="p-3 text-center">Your favorite vehicles</h1>
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">Your favorite vehicles</span>
+        </b>
+    </h1>
+
     {% if not favorite_vehicles %}
         <h6 class="text-center mt-3 p-3 bg-light">Noone vehicle marked as your favorite.</h6>
     {% endif %}

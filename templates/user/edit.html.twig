@@ -3,8 +3,13 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-3">Edit User <b><span style="color: #B0413E">{{ user.firstName }} {{ user.lastName }}</span></b></h1>
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">Edit user</span>
+        </b>
+    </h1>
 
+    <p class="text-center"><span class="bg-light p-1" style="color: darkcyan">User: <b>{{ user.firstName }} {{ user.lastName }}</b></span></p>
     <a class="p-3" href="{{ path('user_index') }}"><i class="fas fa-arrow-circle-left"></i> Back to list</a>
 
     <div class="mt-3">

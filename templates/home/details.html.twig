@@ -10,15 +10,18 @@
     </h1>
     {% if app.user %}
         <div class="text-center">
-            <a href="#" class="bg-light p-1" id="favorite_vehicle"><span id="fav_veh_text">
-                    {% if favoriteVehicle %}Marked as favorite{% else %}Set as favorite{% endif %}
+            <p><span id="fav_veh_text" class="bg-light p-1">
+                    {% if favoriteVehicle %}Unmark from favorites{% else %}Mark as favorite{% endif %}
                 </span>
-            <i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
+                <a href="#" class="bg-light p-1" id="favorite_vehicle">
+                    <i class="fa{% if favoriteVehicle %}s{% else %}r{% endif %} fa-heart" id="icon"></i></a>
+            </p>
+
         </div>
     {% endif %}
     <div class="row mt-4">
         <div class="col-sm-8">
-            <h3 class="text-center"><i>Photos</i></h3>
+            <h3 class="text-center mt-2 mb-3"><span class="bg-light p-1" style="color:darkcyan;"><i>Images</i></span></h3>
             <div class="row mt-3">
                 {% for image in vehicle.images %}
                     <div class="col-sm-6">
@@ -30,7 +33,7 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <h3 class="text-center mt-2"><i>Details</i></h3>
+            <h3 class="text-center mt-2 mb-3"><span class="bg-light p-1" style="color:darkcyan;"><i>Details</i></span></h3>
             <p class="bg-light p-3">Status:
                 {% if vehicle.status == "In stock" %}
                     <span style="color: darkgreen"><strong>{{ vehicle.status }}</strong> <i class="fas fa-check"></i></span>
@@ -56,19 +59,288 @@
         </div>
     </div>
 
-    <h2 class="text-center mt-3"><i>Additional equipment</i></h2>
-
+    <h2 class="text-center mt-3 mb-4"><span class="bg-light p-1" style="color: darkcyan"><i>Additional equipment</i></span></h2>
     {% if additionalEquipment %}
-        {% for fieldName in fieldNames %}
+    <div class="row">
+        <div class="col-sm-3 text-center mb-1">
+            ABS
+            {% if(additionalEquipment.abs) %}
+                 <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+                {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            ESP
+            {% if(additionalEquipment.esp) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Remote locking
+            {% if(additionalEquipment.remoteLocking) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Isofix
+            {% if(additionalEquipment.isofix) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Engine immobilizer
+            {% if(additionalEquipment.engineImmobilizer) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Start stop
+            {% if(additionalEquipment.startStop) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            HAC
+            {% if(additionalEquipment.hac) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Rain sensors
+            {% if(additionalEquipment.rainSensors) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Light sensors
+            {% if(additionalEquipment.lightSensors) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Alarm
+            {% if(additionalEquipment.alarm) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Multifunctional steering wheel
+            {% if(additionalEquipment.multifunctionalSteeringWheel) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Park sensors
+            {% if(additionalEquipment.parkSensors) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Alloy wheels
+            {% if(additionalEquipment.alloyWheels) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Clima
+            {% if(additionalEquipment.clima) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Third stop light
+            {% if(additionalEquipment.thirdStopLight) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Cruise control
+            {% if(additionalEquipment.cruiseControl) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Front electric window lifters
+            {% if(additionalEquipment.electricWindowLiftersFront) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Rear electric window lifters
+            {% if(additionalEquipment.electricWindowLiftersRear) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Electric folding mirrors
+            {% if(additionalEquipment.electricFoldingMirrors) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Tinted glass
+            {% if(additionalEquipment.tintedGlass) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Fog lights
+            {% if(additionalEquipment.fogLights) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Roof window
+            {% if(additionalEquipment.roofWindow) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Touch radio
+            {% if(additionalEquipment.touchRadio) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Metallic color
+            {% if(additionalEquipment.metallicColor) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Child lock
+            {% if(additionalEquipment.childLock) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Front LED lights
+            {% if(additionalEquipment.LEDLightsFront) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Rear LED lights
+            {% if(additionalEquipment.LEDLightsRear) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            LED interior
+            {% if(additionalEquipment.LEDInterrior) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Leather seats
+            {% if(additionalEquipment.leatherSeats) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Sport seats
+            {% if(additionalEquipment.sportSeats) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Rear parking camera
+            {% if(additionalEquipment.rearParkingCamera) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-1">
+            Seat heating
+            {% if(additionalEquipment.seatHeating) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
+        <div class="col-sm-3 text-center mb-4">
+            Handsfree
+            {% if(additionalEquipment.handsfree) %}
+                <i style="color: green" class="fas fa-check-circle"></i>
+            {% else %}
+                <i style="color: red" class="far fa-times-circle"></i>
+            {% endif %}
+        </div>
 
-        <p>{{ fieldName }}</p>
-        {% endfor %}
+    </div>
+
     {% else %}
         <p class="bg-light p-3 text-center mt-3">Additional equipment is not added for this vehicle. Check back soon.</p>
     {% endif %}
 
     {% if app.user %}
-        <p class="text-center"><span class="bg-light p-2">You're interested for this vehicle? Send us <a href="{{ path('inquirie_create', {id: vehicle.id}) }}">inquirie</a>.</span></p>
+        <p class="text-center mb-3"><span class="bg-light p-2"><b>You're interested for this vehicle?</b>
+        <p class="text-center mb-5">
+            <span class="bg-light p-2">
+                <b>Send us <a title="Click for creating a new inquire for this vehicle" href="{{ path('inquirie_create', {id: vehicle.id}) }}">inquirie</a>.</b>
+            </span>
+        </p>
+
     {% endif %}
 
 {% endblock %}
@@ -87,10 +359,10 @@
                         success: function () {
                             if($('#icon').hasClass('far')) {
                                 $('#icon').removeClass('far').addClass('fas')
-                                $('#fav_veh_text').text("Marked as favorite")
+                                $('#fav_veh_text').text("Unmark from favorites")
                             } else {
                                 $('#icon').removeClass('fas').addClass('far')
-                                $('#fav_veh_text').text("Set as favorite")
+                                $('#fav_veh_text').text("Mark as favorite")
                             }
                         }
                     })

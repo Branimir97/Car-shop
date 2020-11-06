@@ -4,7 +4,11 @@
 
 {% block body %}
 
-    <h1 class="text-center p-3">Welcome to vehicle manager</h1>
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">Vehicle manager</span>
+        </b>
+    </h1>
 
     <table class="table">
         <thead>
@@ -24,13 +28,13 @@
                 <td>{{ vehicle.id }}</td>
                 <td>
                     {% if vehicle.status == "In stock" %}
-                        <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-check"></i></span>
+                        <span style="color: darkgreen"><b>{{ vehicle.status }} <i class="fas fa-check"></i></b></span>
                     {% elseif vehicle.status == "In arrival" %}
-                        <span style="color: dodgerblue">{{ vehicle.status }} <i class="fas fa-route"></i></span>
+                        <span style="color: dodgerblue"><b>{{ vehicle.status }} <i class="fas fa-route"></i></b></span>
                     {% elseif vehicle.status == "Reserved" %}
-                        <span style="color: red">{{ vehicle.status }} <i class="fas fa-hourglass-half"></i></span>
+                        <span style="color: red"><b>{{ vehicle.status }} <i class="fas fa-hourglass-half"></i></b></span>
                     {% else %}
-                        <span style="color: darkgreen">{{ vehicle.status }} <i class="fas fa-hand-holding-usd"></i></span>
+                        <span style="color: darkgreen"><b>{{ vehicle.status }} <i class="fas fa-hand-holding-usd"></i></b></span>
                     {% endif %}
                 </td>
                 <td>{{ vehicle.mark }}</td>
@@ -62,7 +66,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-outline-success" href="{{ path('vehicle_new') }}">Create new vehicle</a>
+    <a class="btn btn-success" href="{{ path('vehicle_new') }}">Create new <i class="fas fa-car-alt"></i></a>
 {% endblock %}
 
 

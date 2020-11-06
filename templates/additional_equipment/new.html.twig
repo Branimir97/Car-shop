@@ -3,7 +3,13 @@
 {% block title %}Add additional equipment{% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-3">Add additional equipment for vehicle <b><span style="color: #B0413E"> {{ vehicle_title }}</span></b></h1>
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">Add additional equipment</span>
+        </b>
+    </h1>
+
+    <p class="text-center"><span class="bg-light p-1" style="color: darkcyan">Vehicle: <b>{{ vehicle_title }}</b></span></p>
 
     <a class="p-3" href="{{ path('vehicle_index') }}"><i class="fas fa-arrow-circle-left"></i> Back to list</a>
 

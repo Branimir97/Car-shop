@@ -6,10 +6,11 @@ use App\Entity\AdditionalEquipment;
 use App\Entity\Vehicle;
 use App\Form\AdditionalEquipmentFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+/**@IsGranted("ROLE_ADMIN") */
 
 class AdditionalEquipmentController extends AbstractController
 {
@@ -18,7 +19,7 @@ class AdditionalEquipmentController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function create(Request $request)
     {
         $vehicle_id = $request->get('id');
         $vehicle = $this->getDoctrine()->getRepository(Vehicle::class)->find($vehicle_id);
@@ -40,7 +41,7 @@ class AdditionalEquipmentController extends AbstractController
 
                 $this->addFlash('success', 'Additional equipment successfully edited.');
             }
-            return $this->render('additional_equipment/index.html.twig', [
+            return $this->render('additional_equipment/new.html.twig', [
                 'form' => $form->createView(),
                 'vehicle_title' => $vehicle_title
             ]);
@@ -57,7 +58,7 @@ class AdditionalEquipmentController extends AbstractController
 
             $this->addFlash('success', 'Additional equipment successfully saved.');
         }
-        return $this->render('additional_equipment/index.html.twig', [
+        return $this->render('additional_equipment/new.html.twig', [
             'form' => $formNew->createView(),
             'vehicle_title' => $vehicle_title
         ]);

@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vehicle{% endblock %}
+{% block title %}Vehicle details{% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-3">Vehicle <b><span style="color: #B0413E">{{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
+
+
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">Vehicle details</span>
+        </b>
+    </h1>
+
+    <p class="text-center"><span class="bg-light p-1" style="color: darkcyan">Vehicle: <b>{{ vehicle.mark }} {{ vehicle.model }}</b></span></p>
 
     <a class="p-3" href="{{ path('vehicle_index') }}"><i class="fas fa-arrow-circle-left"></i> Back to list</a>
 
@@ -15,7 +23,17 @@
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ vehicle.status }}</td>
+                <td>
+                    {% if vehicle.status == "In stock" %}
+                        <span style="color: darkgreen"><b>{{ vehicle.status }} <i class="fas fa-check"></i></b></span>
+                    {% elseif vehicle.status == "In arrival" %}
+                        <span style="color: dodgerblue"><b>{{ vehicle.status }} <i class="fas fa-route"></i></b></span>
+                    {% elseif vehicle.status == "Reserved" %}
+                        <span style="color: red"><b>{{ vehicle.status }} <i class="fas fa-hourglass-half"></i></b></span>
+                    {% else %}
+                        <span style="color: darkgreen"><b>{{ vehicle.status }} <i class="fas fa-hand-holding-usd"></i></b></span>
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Type</th>
@@ -59,12 +77,13 @@
             </tr>
             <tr>
                 <th>Price</th>
-                <td>{{ vehicle.price|number_format('0', '.', '.') }}</td>
+                <td>{{ vehicle.price|number_format('0', '.', '.') }} €</td>
             </tr>
         </tbody>
     </table>
 
-    <a class="btn btn-success" href="{{ path('vehicle_edit', {'id': vehicle.id}) }}">Edit vehicle</a>
+            <a class="btn btn-success" href="{{ path('vehicle_edit', {'id': vehicle.id}) }}">Edit vehicle</a>
+
     {{ include('vehicle/_delete_form.html.twig') }}
 
 {% endblock %}

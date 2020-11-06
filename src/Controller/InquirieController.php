@@ -12,8 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -28,7 +28,7 @@ class InquirieController extends AbstractController
      * @param MailerInterface $mailer
      * @return Response
      */
-    public function index(Request $request, MailerInterface $mailer): Response
+    public function create(Request $request, MailerInterface $mailer): Response
     {
         $inquirie = new Inquirie();
         $form = $this->createForm(InquirieType::class, $inquirie);
@@ -49,17 +49,22 @@ class InquirieController extends AbstractController
             $entityManager->persist($vehicle);
             $entityManager->flush();
 
-            $email = (new TemplatedEmail())
-                ->from($inquirie->getUser()->getEmail())
-                ->to('branimirb51@gmail.com')
-                ->subject("Inquirie for ".$vehicle_title)
-                ->htmlTemplate('emails/send_inquirie.html.twig')
-                ->context([
-                    'username' => $inquirie->getUser()->getFirstName(),
-                    'content' => $inquirie->getContent()
-                ]);
+            try {
+                $email = (new TemplatedEmail())
+                    ->from($inquirie->getUser()->getEmail())
+                    ->to('branimirb51@gmail.com')
+                    ->subject("Inquirie for ".$vehicle_title)
+                    ->htmlTemplate('emails/send_inquirie.html.twig')
+                    ->context([
+                        'username' => $inquirie->getUser()->getFirstName(),
+                        'content' => $inquirie->getContent()
+                    ]);
 
-            $mailer->send($email);
+                $mailer->send($email);
+            } catch (TransportExceptionInterface $transportException)
+            {
+                $this->addFlash('warning', 'Email can not be send, not available at the moment.');
+            }
 
             $this->addFlash('success', 'Thanks for sending us offer for this vehicle. Owner is gonna answer you soon!');
             return $this->redirectToRoute('vehicle_details', ['id'=> $vehicle->getId()]);
@@ -82,46 +87,6 @@ class InquirieController extends AbstractController
         return $this->render('inquirie/list.html.twig', [
             'inquiries' => $inquiries,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="inquirie_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Inquirie $inquirie
-     * @return Response
-     */
-    public function edit(Request $request, Inquirie $inquirie): Response
-    {
-        $form = $this->createForm(InquirieType::class, $inquirie);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('inquirie_index');
-        }
-
-        return $this->render('inquirie/edit.html.twig', [
-            'inquirie' => $inquirie,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="inquirie_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Inquirie $inquirie
-     * @return Response
-     */
-    public function delete(Request $request, Inquirie $inquirie): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$inquirie->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($inquirie);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('inquirie_index');
     }
 
     /**

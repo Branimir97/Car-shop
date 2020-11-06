@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploaderHelper
@@ -19,10 +18,8 @@ class UploaderHelper
     public function uploadVehicleImage(UploadedFile $uploadedFile): string
     {
         $destination = $this->uploadsPath;
-
         $originalFileName = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
         $newFileName = $originalFileName .'-'. uniqid() .'.'.$uploadedFile->guessExtension();
-
         $uploadedFile->move($destination, $newFileName);
 
         return $newFileName;

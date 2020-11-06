@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 
 class VehicleType extends AbstractType
@@ -42,7 +43,7 @@ class VehicleType extends AbstractType
             ])
             ->add('modelYear', IntegerType::class, [
                 'attr' => [
-                    'min' => 1950,
+                    'min'=> 1950,
                     'max' => 2021
                 ]
             ])
@@ -71,6 +72,11 @@ class VehicleType extends AbstractType
             $builder ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'multiple' => true,
+                'constraints' => [
+                    new Image([
+                        'maxSize' => '5k'
+                    ])
+                ]
             ]);
         }
     }

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\FavoriteVehicle;
 use App\Entity\Vehicle;
-use App\Form\FavoriteVehicleType;
 use App\Repository\FavoriteVehicleRepository;
 use App\Repository\VehicleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -13,7 +12,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Json;
 
 /**
  * @Route("/favorite/vehicle")

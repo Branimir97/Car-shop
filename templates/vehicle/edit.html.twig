@@ -3,7 +3,14 @@
 {% block title %}Edit Vehicle{% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-3">Edit vehicle <b><span style="color: #B0413E">{{ vehicle.mark }} {{ vehicle.model }}</span></b></h1>
+
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">Edit vehicle</span>
+        </b>
+    </h1>
+
+    <p class="text-center"><span class="bg-light p-1" style="color: darkcyan">Vehicle: <b>{{ vehicle.mark }} {{ vehicle.model }}</b></span></p>
 
     <a class="p-3" href="{{ path('vehicle_index') }}"><i class="fas fa-arrow-circle-left"></i> Back to list</a>
 

@@ -3,8 +3,11 @@
 {% block title %}User manager{% endblock %}
 
 {% block body %}
-    <h1 class="p-3 text-center">Welcome to user manager</h1>
-
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">User manager</span>
+        </b>
+    </h1>
     <table class="table">
         <thead>
             <tr>
@@ -41,7 +44,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-outline-success" href="{{ path('user_new') }}">Create new</a>
+    <a class="btn btn-success" href="{{ path('user_new') }}">Create new <i class="far fa-user"></i></a>
 {% endblock %}
 
 {% block javascripts %}

@@ -5,11 +5,8 @@ namespace App\Controller;
 use App\Entity\AdditionalEquipment;
 use App\Entity\FavoriteVehicle;
 use App\Entity\Vehicle;
-use App\Form\InquirieFormType;
-use App\Repository\ImageRepository;
 use App\Repository\VehicleRepository;
 use App\Service\APIService;
-use Doctrine\ORM\PersistentCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +23,6 @@ class HomeController extends AbstractController
     {
         $vehicles = $vehicleRepository->findAllAvailableAndVisible();
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
             'vehicles' => $vehicles,
         ]);
     }

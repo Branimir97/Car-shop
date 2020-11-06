@@ -26,9 +26,7 @@ class ProfileController extends AbstractController
      */
     public function index()
     {
-        return $this->render('profile/index.html.twig', [
-            'controller_name' => 'ProfileController'
-        ]);
+        return $this->render('profile/index.html.twig');
     }
 
     /**
@@ -71,7 +69,6 @@ class ProfileController extends AbstractController
             }
         }
         return $this->render('profile/change_password.html.twig', [
-            'controller_name' => 'ProfileController',
             'changePasswordForm' => $form->createView()
         ]);
     }

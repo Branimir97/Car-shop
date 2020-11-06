@@ -3,8 +3,12 @@
 {% block title %}Inquirie list{% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-3">Active inquiries</h1>
 
+    <h1 class="p-3 text-center">
+        <b>
+            <span class="bg-light p-1" style="color: darkcyan">Active inquiries</span>
+        </b>
+    </h1>
     {% if not inquiries %}
         <p class="p-3 text-center bg-light">No inquiries at the moment.</p>
     {% endif %}
