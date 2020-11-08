@@ -15,18 +15,31 @@
 
     <div class="row">
         {% for favorite_vehicle in favorite_vehicles %}
-            <div class="col-sm-3 bg-light one_vehicle p-0">
+            <div class="col-sm-3 bg-light one_vehicle p-0 mb-3">
                 <div class="image-wrapper-main">
                     <img src="{{ asset("uploads/")~favorite_vehicle.vehicle.images[0].imagePath }}" alt="">
                 </div>
                 <div class="title-block d-flex justify-content-center align-items-center">
-                    <p class="p-2 m-0 text-center">{{ favorite_vehicle.vehicle.mark }} {{ favorite_vehicle.vehicle.model }}</p>
+                    <p class="p-2 m-0 text-center"><b>{{ favorite_vehicle.vehicle.mark }} {{ favorite_vehicle.vehicle.model }}</b></p>
+                </div>
+
+                <div class="row text-center">
+                    <div class="col-sm-6">
+                        <i class="fas fa-car"></i> {{ favorite_vehicle.vehicle.manufactureYear }}.
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fas fa-road"></i> {{ favorite_vehicle.vehicle.kilometers|number_format('0', '.', '.') }} km
+                    </div>
                 </div>
                 <p class="p-2 m-0">Status:
                     {% if favorite_vehicle.vehicle.status == "In stock" %}
-                        <span style="color: darkgreen">{{ favorite_vehicle.vehicle.status }} <i class="fas fa-check"></i></span>
+                        <span style="color: darkgreen"><b>{{ favorite_vehicle.vehicle.status }} <i class="fas fa-check"></i></b></span>
+                    {% elseif favorite_vehicle.vehicle.status == "In arrival" %}
+                        <span style="color: dodgerblue"><b>{{ favorite_vehicle.vehicle.status }} <i class="fas fa-route"></i></b></span>
+                    {% elseif favorite_vehicle.vehicle.status == "Reserved" %}
+                        <span style="color: red"><b>{{ favorite_vehicle.vehicle.status }} <i class="fas fa-hourglass-half"></i></b></span>
                     {% else %}
-                        <span style="color: red">{{ favorite_vehicle.vehicle.status }} <i class="fas fa-route"></i></span>
+                        <span style="color: darkgreen"><b>{{ favorite_vehicle.vehicle.status }} <i class="fas fa-hand-holding-usd"></i></b></span>
                     {% endif %}
                 </p>
                 <a style="float: right" class="btn btn-success" href="{{ path("vehicle_details", { id: favorite_vehicle.vehicle.id}) }}">
