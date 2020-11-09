@@ -18,7 +18,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/inquirie")
- * @IsGranted("ROLE_ADMIN")
  */
 class InquirieController extends AbstractController
 {
@@ -26,6 +25,7 @@ class InquirieController extends AbstractController
      * @Route("/{id}/create", name="inquirie_create", methods={"GET", "POST"})
      * @param Request $request
      * @param MailerInterface $mailer
+     * @IsGranted("ROLE_USER")
      * @return Response
      */
     public function create(Request $request, MailerInterface $mailer): Response
@@ -78,6 +78,7 @@ class InquirieController extends AbstractController
     /**
      * @Route("/", name="inquirie_list", methods={"GET"})
      * @param InquirieRepository $inquirieRepository
+     * @IsGranted("ROLE_ADMIN")
      * @return Response
      */
     public function show(InquirieRepository $inquirieRepository): Response
@@ -92,6 +93,7 @@ class InquirieController extends AbstractController
     /**
      * @Route("/{id}/accept", name="accept_offer")
      * @param Request $request
+     * @IsGranted("ROLE_ADMIN")
      * @return RedirectResponse
      */
     public function acceptOffer(Request $request)
@@ -118,6 +120,7 @@ class InquirieController extends AbstractController
     /**
      * @Route("/{id}/decline", name="decline_offer")
      * @param Request $request
+     * @IsGranted("ROLE_ADMIN")
      * @return RedirectResponse
      */
     public function declineOffer(Request $request)
